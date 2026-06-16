@@ -1,0 +1,51 @@
+tests/specifications/use-dates-examples.yaml
+  s_b9b45dc7a9ca62::t_c4641f6d2e2c51 27-32
+  s_b9b45dc7a9ca62::t_97030ed9f573f8 1-26,33-57
+packages/mock/src/faker/format-example-value.test.ts
+  s_2723835a65952e::t_647a3e08511904 20,85
+  s_b9b45dc7a9ca62::t_a63adc61d46982 104-183
+  s_b9b45dc7a9ca62::t_f8bb01b550364f 1-19,21-84,86-103,184
+packages/mock/src/msw/mocks.test.ts
+  s_2723835a65952e::t_8178ed87a169dd 1-3,5-57
+  s_2723835a65952e::t_a6afe0184078bd 4
+packages/mock/src/faker/getters/scalar.test.ts
+  s_b9b45dc7a9ca62::t_74c966b5a72c6d 866-903,931-932
+  s_b9b45dc7a9ca62::t_717c9043fb2f99 904-930
+packages/mock/src/faker/format-example-value.ts
+  s_b9b45dc7a9ca62::t_85261e979e04dd 16,20-21,35-115,147,151-152,164-166
+  s_b9b45dc7a9ca62::t_a9fd716fed4732 1-9,13-15,22-34,116-146,148-150,153-163,170-199
+  s_2723835a65952e::t_647a3e08511904 10-12,17-19,167-169
+packages/mock/src/faker/getters/scalar.ts
+  s_b9b45dc7a9ca62::t_223e987b8822dd 29
+  s_b9b45dc7a9ca62::t_1cb4b26dfe37a5 135-139
+packages/mock/src/msw/mocks.ts
+  s_2723835a65952e::t_aa0271f73f0418 221-225,227
+  s_b9b45dc7a9ca62::t_b0f1663a39b7e5 15
+tests/configs/mock.config.ts
+  s_b9b45dc7a9ca62::t_c018379f1835db 250-261,265-269
+  s_2723835a65952e::t_44207ab1fa9a51 262-264
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.7",
+  "base_commit_sha": "0986aa3da1919eef52c4f84ef87597fd79c0890f",
+  "prompts": {},
+  "sessions": {
+    "s_2723835a65952e": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "667ae28f-4bfd-4021-bf4e-193362dbded7",
+        "model": "default"
+      },
+      "human_author": "Samu <samuel.requena@archlet.ch>"
+    },
+    "s_b9b45dc7a9ca62": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "331d7150-aefb-4714-ad40-3653eedc7500",
+        "model": "default"
+      },
+      "human_author": "Samu <samuel.requena@archlet.ch>"
+    }
+  }
+}
