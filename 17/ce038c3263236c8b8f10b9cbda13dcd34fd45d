@@ -1,0 +1,24 @@
+packages/mock/src/faker/format-example-value.ts
+  s_2723835a65952e::t_f0d9e39f887efc 234
+  s_2723835a65952e::t_b0099adfa87f91 73-75
+  s_2723835a65952e::t_469ae9c126eed8 57-72,76-84,92,94-107,120,126,149,160-165
+packages/mock/src/faker/format-example-value.test.ts
+  s_2723835a65952e::t_6c253ee6df46b1 189
+  s_2723835a65952e::t_1b22ba32a84cb8 184-188,190-230
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.7",
+  "base_commit_sha": "17ce038c3263236c8b8f10b9cbda13dcd34fd45d",
+  "prompts": {},
+  "sessions": {
+    "s_2723835a65952e": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "667ae28f-4bfd-4021-bf4e-193362dbded7",
+        "model": "default"
+      },
+      "human_author": "Samu <samuel.requena@archlet.ch>"
+    }
+  }
+}
