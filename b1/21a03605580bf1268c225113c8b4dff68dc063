@@ -1,0 +1,23 @@
+tests/__snapshots__/mock/use-dates-examples/model/index.ts
+  s_2723835a65952e::t_0ff68797f8b089 1-8
+tests/__snapshots__/mock/use-dates-examples/model/pet.ts
+  s_2723835a65952e::t_0ff68797f8b089 1-12
+tests/__snapshots__/mock/use-dates-examples/endpoints.ts
+  s_2723835a65952e::t_0ff68797f8b089 1-368
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.7",
+  "base_commit_sha": "b121a03605580bf1268c225113c8b4dff68dc063",
+  "prompts": {},
+  "sessions": {
+    "s_2723835a65952e": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "667ae28f-4bfd-4021-bf4e-193362dbded7",
+        "model": "default"
+      },
+      "human_author": "Samu <samuel.requena@archlet.ch>"
+    }
+  }
+}
