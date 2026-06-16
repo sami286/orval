@@ -1,0 +1,22 @@
+packages/mock/src/faker/format-example-value.ts
+  s_2723835a65952e::t_822cf6b4e3e9bd 31
+  s_2723835a65952e::t_c9a8cc292d8cbb 79-80,91,94,99,101
+packages/mock/src/msw/mocks.test.ts
+  s_2723835a65952e::t_03fd65fef36115 8,33-34
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.7",
+  "base_commit_sha": "d93b8ba0a1b426e13378908bc05198e7742656fc",
+  "prompts": {},
+  "sessions": {
+    "s_2723835a65952e": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "667ae28f-4bfd-4021-bf4e-193362dbded7",
+        "model": "default"
+      },
+      "human_author": "Samu <samuel.requena@archlet.ch>"
+    }
+  }
+}
