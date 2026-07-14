@@ -64,3 +64,97 @@ export const schemaHasDateFields = (
 
   return false;
 };
+
+const isNullable = (schema: OpenApiSchemaObject): boolean =>
+  schema.nullable === true ||
+  (Array.isArray(schema.type) && schema.type.includes('null'));
+
+const IDENTIFIER_REGEX = /^[A-Za-z_$][\w$]*$/;
+
+const propertyAccessor = (parent: string, key: string): string =>
+  IDENTIFIER_REGEX.test(key)
+    ? `${parent}.${key}`
+    : `${parent}[${JSON.stringify(key)}]`;
+
+const indent = (statements: string[]): string[] =>
+  statements.map((statement) => `  ${statement}`);
+
+export interface BuildDateTransformParams {
+  schema: SchemaOrRef;
+  /** Expression the statements mutate in place, e.g. `data.log` */
+  accessor: string;
+  context: ContextSpec;
+  visitedRefs?: Set<string>;
+  /** Nesting level, used for unique loop index names (i0, i1, …) */
+  depth?: number;
+}
+
+export const buildDateTransformStatements = ({
+  schema: schemaOrRef,
+  accessor,
+  context,
+  visitedRefs = new Set(),
+  depth = 0,
+}: BuildDateTransformParams): string[] => {
+  const { schema, ref } = resolveSchema(schemaOrRef, context);
+  if (ref) {
+    if (visitedRefs.has(ref)) return [];
+    visitedRefs.add(ref);
+  }
+
+  if (isDateSchema(schema)) {
+    return [`${accessor} = new Date(${accessor});`];
+  }
+
+  if (schema.allOf) {
+    return schema.allOf.flatMap((branch) =>
+      buildDateTransformStatements({
+        schema: branch,
+        accessor,
+        context,
+        visitedRefs,
+        depth,
+      }),
+    );
+  }
+
+  if (schema.items) {
+    const index = `i${depth}`;
+    const statements = buildDateTransformStatements({
+      schema: schema.items,
+      accessor: `${accessor}[${index}]`,
+      context,
+      visitedRefs,
+      depth: depth + 1,
+    });
+    if (statements.length === 0) return [];
+    return [
+      `for (let ${index} = 0; ${index} < ${accessor}.length; ${index}++) {`,
+      ...indent(statements),
+      '}',
+    ];
+  }
+
+  if (schema.properties) {
+    const required = new Set(schema.required ?? []);
+    return Object.entries(schema.properties).flatMap(([key, property]) => {
+      const target = propertyAccessor(accessor, key);
+      const statements = buildDateTransformStatements({
+        schema: property,
+        accessor: target,
+        context,
+        visitedRefs,
+        depth,
+      });
+      if (statements.length === 0) return [];
+
+      const { schema: propertySchema } = resolveSchema(property, context);
+      const needsGuard = !required.has(key) || isNullable(propertySchema);
+      if (!needsGuard) return statements;
+
+      return [`if (${target} != null) {`, ...indent(statements), '}'];
+    });
+  }
+
+  return [];
+};

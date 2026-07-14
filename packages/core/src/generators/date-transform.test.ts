@@ -1,7 +1,10 @@
 import { describe, expect, it } from 'vitest';
 
 import type { ContextSpec, OpenApiSchemaObject } from '../types';
-import { schemaHasDateFields } from './date-transform';
+import {
+  buildDateTransformStatements,
+  schemaHasDateFields,
+} from './date-transform';
 
 const makeContext = (
   schemas: Record<string, OpenApiSchemaObject> = {},
@@ -99,5 +102,153 @@ describe('schemaHasDateFields', () => {
     expect(
       schemaHasDateFields({ $ref: '#/components/schemas/Node' }, context),
     ).toBe(false);
+  });
+});
+
+describe('buildDateTransformStatements', () => {
+  it('emits a guarded assignment for an optional date property', () => {
+    const schema: OpenApiSchemaObject = {
+      type: 'object',
+      required: ['startTime'],
+      properties: {
+        startTime: { type: 'string', format: 'date-time' },
+        endTime: { type: 'string', format: 'date-time', nullable: true },
+      },
+    };
+
+    const statements = buildDateTransformStatements({
+      schema,
+      accessor: 'data',
+      context: makeContext(),
+    });
+
+    expect(statements.join('\n')).toBe(
+      [
+        'data.startTime = new Date(data.startTime);',
+        'if (data.endTime != null) {',
+        '  data.endTime = new Date(data.endTime);',
+        '}',
+      ].join('\n'),
+    );
+  });
+
+  it('emits an index loop for arrays so date-string elements can be reassigned', () => {
+    const schema: OpenApiSchemaObject = {
+      type: 'array',
+      items: { type: 'string', format: 'date' },
+    };
+
+    const statements = buildDateTransformStatements({
+      schema,
+      accessor: 'data',
+      context: makeContext(),
+    });
+
+    expect(statements.join('\n')).toBe(
+      [
+        'for (let i0 = 0; i0 < data.length; i0++) {',
+        '  data[i0] = new Date(data[i0]);',
+        '}',
+      ].join('\n'),
+    );
+  });
+
+  it('recurses through $ref, allOf and nested arrays, pruning date-free branches', () => {
+    const context = makeContext({
+      LogEvent: {
+        type: 'object',
+        required: ['createdAt'],
+        properties: {
+          createdAt: { type: 'string', format: 'date-time' },
+          message: { type: 'string' },
+        },
+      },
+    });
+    const schema: OpenApiSchemaObject = {
+      allOf: [
+        {
+          type: 'object',
+          properties: {
+            log: {
+              type: 'array',
+              items: { $ref: '#/components/schemas/LogEvent' },
+            },
+          },
+        },
+        { type: 'object', properties: { name: { type: 'string' } } },
+      ],
+    };
+
+    const statements = buildDateTransformStatements({
+      schema,
+      accessor: 'data',
+      context,
+    });
+
+    expect(statements.join('\n')).toBe(
+      [
+        'if (data.log != null) {',
+        '  for (let i0 = 0; i0 < data.log.length; i0++) {',
+        '    data.log[i0].createdAt = new Date(data.log[i0].createdAt);',
+        '  }',
+        '}',
+      ].join('\n'),
+    );
+  });
+
+  it('uses bracket access for non-identifier property names', () => {
+    const schema: OpenApiSchemaObject = {
+      type: 'object',
+      required: ['created-at'],
+      properties: { 'created-at': { type: 'string', format: 'date-time' } },
+    };
+
+    const statements = buildDateTransformStatements({
+      schema,
+      accessor: 'data',
+      context: makeContext(),
+    });
+
+    expect(statements).toEqual([
+      'data["created-at"] = new Date(data["created-at"]);',
+    ]);
+  });
+
+  it('returns [] for date-free, oneOf, and circular schemas', () => {
+    const context = makeContext({
+      Node: {
+        type: 'object',
+        properties: { child: { $ref: '#/components/schemas/Node' } },
+      },
+    });
+
+    expect(
+      buildDateTransformStatements({
+        schema: { type: 'object', properties: { name: { type: 'string' } } },
+        accessor: 'data',
+        context,
+      }),
+    ).toEqual([]);
+    expect(
+      buildDateTransformStatements({
+        schema: {
+          oneOf: [
+            {
+              type: 'object',
+              properties: { at: { type: 'string', format: 'date-time' } },
+            },
+          ],
+        },
+        accessor: 'data',
+        context,
+      }),
+    ).toEqual([]);
+    expect(
+      buildDateTransformStatements({
+        schema: { $ref: '#/components/schemas/Node' },
+        accessor: 'data',
+        context,
+      }),
+    ).toEqual([]);
   });
 });
