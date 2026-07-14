@@ -8,7 +8,6 @@ import type {
 import {
   buildDateTransformStatements,
   generateResponseDateDeserializer,
-  schemaHasDateFields,
 } from './date-transform';
 
 const makeContext = (
@@ -25,111 +24,6 @@ const makeContext = (
     },
     output: { override: { useDates: true, useDatesTransform: true } },
   }) as unknown as ContextSpec;
-
-describe('schemaHasDateFields', () => {
-  it('detects a direct date-time string', () => {
-    expect(
-      schemaHasDateFields(
-        { type: 'string', format: 'date-time' },
-        makeContext(),
-      ),
-    ).toBe(true);
-  });
-
-  it('detects date fields through object properties and arrays', () => {
-    const schema: OpenApiSchemaObject = {
-      type: 'object',
-      properties: {
-        items: {
-          type: 'array',
-          items: {
-            type: 'object',
-            properties: {
-              createdAt: { type: 'string', format: 'date' },
-            },
-          },
-        },
-      },
-    };
-    expect(schemaHasDateFields(schema, makeContext())).toBe(true);
-  });
-
-  it('detects date fields through $ref and allOf', () => {
-    const context = makeContext({
-      Audit: {
-        type: 'object',
-        properties: { updatedAt: { type: 'string', format: 'date-time' } },
-      },
-    });
-    const schema: OpenApiSchemaObject = {
-      allOf: [
-        { $ref: '#/components/schemas/Audit' },
-        { type: 'object', properties: { name: { type: 'string' } } },
-      ],
-    };
-    expect(schemaHasDateFields(schema, context)).toBe(true);
-  });
-
-  it('returns false for date-free subtrees', () => {
-    const schema: OpenApiSchemaObject = {
-      type: 'object',
-      properties: {
-        name: { type: 'string' },
-        count: { type: 'integer' },
-      },
-    };
-    expect(schemaHasDateFields(schema, makeContext())).toBe(false);
-  });
-
-  it('returns false for oneOf date fields (unsupported in MVP)', () => {
-    const schema: OpenApiSchemaObject = {
-      oneOf: [
-        {
-          type: 'object',
-          properties: { at: { type: 'string', format: 'date-time' } },
-        },
-        { type: 'string' },
-      ],
-    };
-    expect(schemaHasDateFields(schema, makeContext())).toBe(false);
-  });
-
-  it('terminates on circular $refs', () => {
-    const context = makeContext({
-      Node: {
-        type: 'object',
-        properties: {
-          child: { $ref: '#/components/schemas/Node' },
-          label: { type: 'string' },
-        },
-      },
-    });
-    expect(
-      schemaHasDateFields({ $ref: '#/components/schemas/Node' }, context),
-    ).toBe(false);
-  });
-
-  it('detects dates in a later sibling $ref after a date-free sibling $ref', () => {
-    const context = makeContext({
-      PlainMeta: {
-        type: 'object',
-        properties: { at: { type: 'string' } },
-      },
-      DatedMeta: {
-        type: 'object',
-        properties: { at: { type: 'string', format: 'date-time' } },
-      },
-    });
-    const schema: OpenApiSchemaObject = {
-      type: 'object',
-      properties: {
-        plain: { $ref: '#/components/schemas/PlainMeta' },
-        dated: { $ref: '#/components/schemas/DatedMeta' },
-      },
-    };
-    expect(schemaHasDateFields(schema, context)).toBe(true);
-  });
-});
 
 describe('buildDateTransformStatements', () => {
   it('emits a guarded assignment for an optional date property', () => {
@@ -265,6 +159,28 @@ describe('buildDateTransformStatements', () => {
     ]);
   });
 
+  it('applies allOf branches and sibling properties together', () => {
+    const context = makeContext({
+      Audit: {
+        type: 'object',
+        required: ['updatedAt'],
+        properties: { updatedAt: { type: 'string', format: 'date-time' } },
+      },
+    });
+    const schema: OpenApiSchemaObject = {
+      allOf: [{ $ref: '#/components/schemas/Audit' }],
+      required: ['createdAt'],
+      properties: { createdAt: { type: 'string', format: 'date-time' } },
+    };
+
+    expect(
+      buildDateTransformStatements({ schema, accessor: 'data', context }),
+    ).toEqual([
+      'data.updatedAt = new Date(data.updatedAt);',
+      'data.createdAt = new Date(data.createdAt);',
+    ]);
+  });
+
   it('returns [] for date-free, oneOf, and circular schemas', () => {
     const context = makeContext({
       Node: {
@@ -359,6 +275,20 @@ describe('generateResponseDateDeserializer', () => {
 };
 `,
     );
+  });
+
+  it('generates a deserializer for an uppercase JSON content type', () => {
+    const result = generateResponseDateDeserializer({
+      operationName: 'getPet',
+      response: makeResponse({
+        successTypes: [
+          { originalSchema: datedSchema, contentType: 'application/JSON' },
+        ],
+      }),
+      context: makeContext(),
+    });
+
+    expect(result?.name).toBe('deserializeGetPetResponse');
   });
 
   it('returns undefined when the response has no date fields', () => {

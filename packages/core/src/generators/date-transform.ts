@@ -29,44 +29,6 @@ const resolveSchema = (
 const isDateSchema = (schema: OpenApiSchemaObject): boolean =>
   schema.format === 'date' || schema.format === 'date-time';
 
-/**
- * True when the subtree contains at least one date field that
- * `buildDateTransformStatements` knows how to convert. Intentionally ignores
- * oneOf/anyOf and additionalProperties (MVP limitations) so a truthy result
- * always yields a non-empty deserializer.
- */
-export const schemaHasDateFields = (
-  schemaOrRef: SchemaOrRef,
-  context: ContextSpec,
-  visitedRefs: Set<string> = new Set(),
-): boolean => {
-  const { schema, ref } = resolveSchema(schemaOrRef, context);
-  if (ref) {
-    if (visitedRefs.has(ref)) return false;
-    visitedRefs.add(ref);
-  }
-
-  let result = false;
-  if (isDateSchema(schema)) {
-    result = true;
-  } else if (schema.allOf) {
-    result = schema.allOf.some((branch) =>
-      schemaHasDateFields(branch, context, visitedRefs),
-    );
-  } else if (schema.items) {
-    result = schemaHasDateFields(schema.items, context, visitedRefs);
-  } else if (schema.properties) {
-    result = Object.values(schema.properties).some((property) =>
-      schemaHasDateFields(property, context, visitedRefs),
-    );
-  }
-
-  if (ref) {
-    visitedRefs.delete(ref);
-  }
-  return result;
-};
-
 const isNullable = (schema: OpenApiSchemaObject): boolean =>
   schema.nullable === true ||
   (Array.isArray(schema.type) && schema.type.includes('null'));
@@ -107,57 +69,116 @@ export const buildDateTransformStatements = ({
   let result: string[] = [];
   if (isDateSchema(schema)) {
     result = [`${accessor} = new Date(${accessor});`];
-  } else if (schema.allOf) {
-    result = schema.allOf.flatMap((branch) =>
-      buildDateTransformStatements({
-        schema: branch,
-        accessor,
-        context,
-        visitedRefs,
-        depth,
-      }),
-    );
-  } else if (schema.items) {
-    const index = `i${depth}`;
-    const statements = buildDateTransformStatements({
-      schema: schema.items,
-      accessor: `${accessor}[${index}]`,
-      context,
-      visitedRefs,
-      depth: depth + 1,
-    });
-    if (statements.length > 0) {
-      result = [
-        `for (let ${index} = 0; ${index} < ${accessor}.length; ${index}++) {`,
-        ...indent(statements),
-        '}',
-      ];
-    }
-  } else if (schema.properties) {
-    const required = new Set(schema.required ?? []);
-    result = Object.entries(schema.properties).flatMap(([key, property]) => {
-      const target = propertyAccessor(accessor, key);
-      const statements = buildDateTransformStatements({
-        schema: property,
-        accessor: target,
-        context,
-        visitedRefs,
-        depth,
-      });
-      if (statements.length === 0) return [];
+  } else {
+    // allOf, items and properties are siblings in JSON Schema, not
+    // mutually-exclusive branches — a schema can combine `allOf` with its
+    // own `properties` (or, less commonly, `items`), and every one of them
+    // must contribute its date statements.
+    const allOfStatements = schema.allOf
+      ? schema.allOf.flatMap((branch) =>
+          buildDateTransformStatements({
+            schema: branch,
+            accessor,
+            context,
+            visitedRefs,
+            depth,
+          }),
+        )
+      : [];
 
-      const { schema: propertySchema } = resolveSchema(property, context);
-      const needsGuard = !required.has(key) || isNullable(propertySchema);
-      if (!needsGuard) return statements;
+    const itemsStatements = schema.items
+      ? buildItemsStatements({
+          items: schema.items,
+          accessor,
+          context,
+          visitedRefs,
+          depth,
+        })
+      : [];
 
-      return [`if (${target} != null) {`, ...indent(statements), '}'];
-    });
+    const propertiesStatements = schema.properties
+      ? buildPropertiesStatements({
+          properties: schema.properties,
+          required: schema.required,
+          accessor,
+          context,
+          visitedRefs,
+          depth,
+        })
+      : [];
+
+    result = [...allOfStatements, ...itemsStatements, ...propertiesStatements];
   }
 
   if (ref) {
     visitedRefs.delete(ref);
   }
   return result;
+};
+
+const buildItemsStatements = ({
+  items,
+  accessor,
+  context,
+  visitedRefs,
+  depth,
+}: {
+  items: SchemaOrRef;
+  accessor: string;
+  context: ContextSpec;
+  visitedRefs: Set<string>;
+  depth: number;
+}): string[] => {
+  const index = `i${depth}`;
+  const statements = buildDateTransformStatements({
+    schema: items,
+    accessor: `${accessor}[${index}]`,
+    context,
+    visitedRefs,
+    depth: depth + 1,
+  });
+  if (statements.length === 0) return [];
+
+  return [
+    `for (let ${index} = 0; ${index} < ${accessor}.length; ${index}++) {`,
+    ...indent(statements),
+    '}',
+  ];
+};
+
+const buildPropertiesStatements = ({
+  properties,
+  required,
+  accessor,
+  context,
+  visitedRefs,
+  depth,
+}: {
+  properties: Record<string, SchemaOrRef>;
+  required: string[] | undefined;
+  accessor: string;
+  context: ContextSpec;
+  visitedRefs: Set<string>;
+  depth: number;
+}): string[] => {
+  const requiredSet = new Set(required ?? []);
+  return Object.entries(properties).flatMap(([key, property]) => {
+    const target = propertyAccessor(accessor, key);
+    const statements = buildDateTransformStatements({
+      schema: property,
+      accessor: target,
+      context,
+      visitedRefs,
+      depth,
+    });
+    if (statements.length === 0) return [];
+
+    const { schema: propertySchema } = resolveSchema(property, context);
+    const needsGuard = !requiredSet.has(key) || isNullable(propertySchema);
+    if (!needsGuard) return statements;
+
+    return [`if (${target} != null) {`, ...indent(statements), '}'];
+  });
 };
 
 export interface GeneratedDateDeserializer {
@@ -189,7 +210,7 @@ export const generateResponseDateDeserializer = ({
   const [successType] = response.types.success;
   if (
     !successType.originalSchema ||
-    !successType.contentType.includes('json')
+    !successType.contentType.toLowerCase().includes('json')
   ) {
     return undefined;
   }
