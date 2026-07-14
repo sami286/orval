@@ -744,6 +744,11 @@ describe('generateAxiosRequestFunction with useDatesTransform', () => {
       'const deserializeGetPetResponse = (data: Pet): Pet =>',
     );
     expect(result).toMatch(/\)\.then\(deserializeGetPetResponse\);/);
+    // The deserializer const must come AFTER the operation const so the
+    // writer-prepended doc comment stays attached to the operation.
+    expect(result.indexOf('const getPet')).toBeLessThan(
+      result.indexOf('const deserializeGetPetResponse'),
+    );
   });
 
   it('appends .then(deserializer) after the hook-mutator call', () => {
@@ -759,6 +764,9 @@ describe('generateAxiosRequestFunction with useDatesTransform', () => {
       'const deserializeGetPetResponse = (data: Pet): Pet =>',
     );
     expect(result).toMatch(/\)\.then\(deserializeGetPetResponse\);/);
+    expect(result.indexOf('const useGetPetHook')).toBeLessThan(
+      result.indexOf('const deserializeGetPetResponse'),
+    );
   });
 
   it('transforms res.data for the plain axios client', () => {
@@ -769,6 +777,9 @@ describe('generateAxiosRequestFunction with useDatesTransform', () => {
     );
     expect(result).toContain(
       '.then((res) => { res.data = deserializeGetPetResponse(res.data); return res; })',
+    );
+    expect(result.indexOf('const getPet')).toBeLessThan(
+      result.indexOf('const deserializeGetPetResponse'),
     );
   });
 

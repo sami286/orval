@@ -324,8 +324,13 @@ export const generateAxiosRequestFunction = (
   const dateDeserializer = override.useDatesTransform
     ? generateResponseDateDeserializer({ operationName, response, context })
     : undefined;
+  // Emitted AFTER the operation block: the orval writer prepends the
+  // operation's doc comment to this implementation string, so the operation
+  // const must come first to keep the JSDoc attached to it. The deserializer
+  // is only referenced inside the operation body (executed at call time), so
+  // the later declaration has no TDZ issue.
   const dateDeserializerImplementation = dateDeserializer
-    ? `${dateDeserializer.implementation}\n`
+    ? `\n${dateDeserializer.implementation}`
     : '';
   const thenDateDeserializer = dateDeserializer
     ? `.then(${dateDeserializer.name})`
@@ -376,7 +381,7 @@ export const generateAxiosRequestFunction = (
           ${requestOptions})${thenDateDeserializer};
         }`;
 
-      return `${dateDeserializerImplementation}${
+      return `${
         override.query.shouldExportMutatorHooks ? 'export ' : ''
       }const use${pascal(operationName)}Hook = () => {
         const ${operationName} = ${mutator.name}<${
@@ -385,10 +390,10 @@ export const generateAxiosRequestFunction = (
 
         return ${adapter.wrapHookMutatorCallback(callback, operationName)}
       }
-    `;
+    ${dateDeserializerImplementation}`;
     }
 
-    return `${dateDeserializerImplementation}${override.query.shouldExportHttpClient ? 'export ' : ''}const ${operationName} = (\n    ${propsImplementation}\n ${
+    return `${override.query.shouldExportHttpClient ? 'export ' : ''}const ${operationName} = (\n    ${propsImplementation}\n ${
       isRequestOptions && mutator.hasSecondArg
         ? `options${context.output.optionsParamRequired ? '' : '?'}: SecondParameter<typeof ${mutator.name}>,`
         : ''
@@ -399,7 +404,7 @@ export const generateAxiosRequestFunction = (
       ${mutatorConfig},
       ${requestOptions})${thenDateDeserializer};
     }
-  `;
+  ${dateDeserializerImplementation}`;
   }
 
   const isSyntheticDefaultImportsAllowed = isSyntheticDefaultImportsAllow(
@@ -431,7 +436,7 @@ export const generateAxiosRequestFunction = (
 
   const queryProps = toObjectString(props, 'implementation');
 
-  const httpRequestFunctionImplementation = `${dateDeserializerImplementation}${override.query.shouldExportHttpClient ? 'export ' : ''}const ${operationName} = (\n    ${queryProps} ${optionsArgs} ): Promise<AxiosResponse<${
+  const httpRequestFunctionImplementation = `${override.query.shouldExportHttpClient ? 'export ' : ''}const ${operationName} = (\n    ${queryProps} ${optionsArgs} ): Promise<AxiosResponse<${
     response.definition.success || 'unknown'
   }>> => {
     ${unrefStatements}
@@ -444,7 +449,7 @@ export const generateAxiosRequestFunction = (
         : ''
     };
   }
-`;
+${dateDeserializerImplementation}`;
 
   return httpRequestFunctionImplementation;
 };
