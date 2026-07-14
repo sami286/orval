@@ -4,6 +4,7 @@ import {
   generateMutatorConfig,
   generateMutatorRequestOptions,
   generateOptions,
+  generateResponseDateDeserializer,
   type GeneratorDependency,
   type GeneratorMutator,
   type GeneratorOptions,
@@ -320,6 +321,16 @@ export const generateAxiosRequestFunction = (
     isFormUrlEncoded,
   });
 
+  const dateDeserializer = override.useDatesTransform
+    ? generateResponseDateDeserializer({ operationName, response, context })
+    : undefined;
+  const dateDeserializerImplementation = dateDeserializer
+    ? `${dateDeserializer.implementation}\n`
+    : '';
+  const thenDateDeserializer = dateDeserializer
+    ? `.then(${dateDeserializer.name})`
+    : '';
+
   if (mutator) {
     const mutatorConfig = generateMutatorConfig({
       route,
@@ -362,10 +373,10 @@ export const generateAxiosRequestFunction = (
         ${bodyForm}
         return ${operationName}(
           ${mutatorConfig},
-          ${requestOptions});
+          ${requestOptions})${thenDateDeserializer};
         }`;
 
-      return `${
+      return `${dateDeserializerImplementation}${
         override.query.shouldExportMutatorHooks ? 'export ' : ''
       }const use${pascal(operationName)}Hook = () => {
         const ${operationName} = ${mutator.name}<${
@@ -377,7 +388,7 @@ export const generateAxiosRequestFunction = (
     `;
     }
 
-    return `${override.query.shouldExportHttpClient ? 'export ' : ''}const ${operationName} = (\n    ${propsImplementation}\n ${
+    return `${dateDeserializerImplementation}${override.query.shouldExportHttpClient ? 'export ' : ''}const ${operationName} = (\n    ${propsImplementation}\n ${
       isRequestOptions && mutator.hasSecondArg
         ? `options${context.output.optionsParamRequired ? '' : '?'}: SecondParameter<typeof ${mutator.name}>,`
         : ''
@@ -386,7 +397,7 @@ export const generateAxiosRequestFunction = (
       ${bodyForm}
       return ${mutator.name}<${response.definition.success || 'unknown'}>(
       ${mutatorConfig},
-      ${requestOptions});
+      ${requestOptions})${thenDateDeserializer};
     }
   `;
   }
@@ -420,14 +431,18 @@ export const generateAxiosRequestFunction = (
 
   const queryProps = toObjectString(props, 'implementation');
 
-  const httpRequestFunctionImplementation = `${override.query.shouldExportHttpClient ? 'export ' : ''}const ${operationName} = (\n    ${queryProps} ${optionsArgs} ): Promise<AxiosResponse<${
+  const httpRequestFunctionImplementation = `${dateDeserializerImplementation}${override.query.shouldExportHttpClient ? 'export ' : ''}const ${operationName} = (\n    ${queryProps} ${optionsArgs} ): Promise<AxiosResponse<${
     response.definition.success || 'unknown'
   }>> => {
     ${unrefStatements}
     ${bodyForm}
     return axios${
       isSyntheticDefaultImportsAllowed ? '' : '.default'
-    }.${verb}(${options});
+    }.${verb}(${options})${
+      dateDeserializer
+        ? `.then((res) => { res.data = ${dateDeserializer.name}(res.data); return res; })`
+        : ''
+    };
   }
 `;
 
