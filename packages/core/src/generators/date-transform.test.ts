@@ -1,8 +1,13 @@
 import { describe, expect, it } from 'vitest';
 
-import type { ContextSpec, OpenApiSchemaObject } from '../types';
+import type {
+  ContextSpec,
+  GetterResponse,
+  OpenApiSchemaObject,
+} from '../types';
 import {
   buildDateTransformStatements,
+  generateResponseDateDeserializer,
   schemaHasDateFields,
 } from './date-transform';
 
@@ -296,5 +301,126 @@ describe('buildDateTransformStatements', () => {
         context,
       }),
     ).toEqual([]);
+  });
+});
+
+const makeResponse = (
+  overrides: Partial<GetterResponse> & {
+    successTypes?: Array<Partial<GetterResponse['types']['success'][number]>>;
+  },
+): GetterResponse => {
+  const { successTypes, ...rest } = overrides;
+  return {
+    imports: [],
+    definition: { success: 'Pet', errors: 'unknown' },
+    isBlob: false,
+    types: {
+      success: (successTypes ?? []).map((type) => ({
+        value: 'Pet',
+        isEnum: false,
+        type: 'object',
+        imports: [],
+        schemas: [],
+        isRef: true,
+        key: '200',
+        contentType: 'application/json',
+        ...type,
+      })),
+      errors: [],
+    },
+    contentTypes: ['application/json'],
+    schemas: [],
+    ...rest,
+  } as GetterResponse;
+};
+
+describe('generateResponseDateDeserializer', () => {
+  const datedSchema: OpenApiSchemaObject = {
+    type: 'object',
+    required: ['createdAt'],
+    properties: { createdAt: { type: 'string', format: 'date-time' } },
+  };
+
+  it('generates a named deserializer for a dated JSON response', () => {
+    const result = generateResponseDateDeserializer({
+      operationName: 'getPet',
+      response: makeResponse({
+        successTypes: [{ originalSchema: datedSchema }],
+      }),
+      context: makeContext(),
+    });
+
+    expect(result?.name).toBe('deserializeGetPetResponse');
+    expect(result?.implementation).toBe(
+      `const deserializeGetPetResponse = (data: Pet): Pet => {
+  if (data == null) return data;
+  data.createdAt = new Date(data.createdAt);
+  return data;
+};
+`,
+    );
+  });
+
+  it('returns undefined when the response has no date fields', () => {
+    const result = generateResponseDateDeserializer({
+      operationName: 'getPet',
+      response: makeResponse({
+        successTypes: [
+          {
+            originalSchema: {
+              type: 'object',
+              properties: { name: { type: 'string' } },
+            },
+          },
+        ],
+      }),
+      context: makeContext(),
+    });
+    expect(result).toBeUndefined();
+  });
+
+  it('returns undefined for blob, non-JSON, missing-schema and multi-success responses', () => {
+    const context = makeContext();
+    const blob = makeResponse({
+      successTypes: [{ originalSchema: datedSchema }],
+    });
+    blob.isBlob = true;
+    expect(
+      generateResponseDateDeserializer({
+        operationName: 'a',
+        response: blob,
+        context,
+      }),
+    ).toBeUndefined();
+    expect(
+      generateResponseDateDeserializer({
+        operationName: 'b',
+        response: makeResponse({
+          successTypes: [
+            { originalSchema: datedSchema, contentType: 'text/plain' },
+          ],
+        }),
+        context,
+      }),
+    ).toBeUndefined();
+    expect(
+      generateResponseDateDeserializer({
+        operationName: 'c',
+        response: makeResponse({ successTypes: [{}] }),
+        context,
+      }),
+    ).toBeUndefined();
+    expect(
+      generateResponseDateDeserializer({
+        operationName: 'd',
+        response: makeResponse({
+          successTypes: [
+            { originalSchema: datedSchema },
+            { key: '201', originalSchema: datedSchema },
+          ],
+        }),
+        context,
+      }),
+    ).toBeUndefined();
   });
 });

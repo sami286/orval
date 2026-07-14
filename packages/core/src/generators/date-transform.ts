@@ -1,9 +1,11 @@
 import { resolveRef } from '../resolvers/ref';
 import type {
   ContextSpec,
+  GetterResponse,
   OpenApiReferenceObject,
   OpenApiSchemaObject,
 } from '../types';
+import { pascal } from '../utils';
 import { isReference } from '../utils/assertion';
 
 type SchemaOrRef = OpenApiSchemaObject | OpenApiReferenceObject;
@@ -156,4 +158,57 @@ export const buildDateTransformStatements = ({
     visitedRefs.delete(ref);
   }
   return result;
+};
+
+export interface GeneratedDateDeserializer {
+  name: string;
+  implementation: string;
+}
+
+/**
+ * Builds a `deserialize{Op}Response` function converting schema-declared
+ * date fields of the (single) JSON success response in place. Returns
+ * undefined when there is nothing to transform, so callers emit no code.
+ */
+export const generateResponseDateDeserializer = ({
+  operationName,
+  response,
+  context,
+}: {
+  operationName: string;
+  response: GetterResponse;
+  context: ContextSpec;
+}): GeneratedDateDeserializer | undefined => {
+  if (response.isBlob) return undefined;
+
+  // MVP: a single success shape only — mixed 2xx types would need
+  // status-aware dispatch, and the deserializer's parameter type would not
+  // match the operation's return type union.
+  if (response.types.success.length !== 1) return undefined;
+
+  const [successType] = response.types.success;
+  if (
+    !successType.originalSchema ||
+    !successType.contentType.includes('json')
+  ) {
+    return undefined;
+  }
+
+  const statements = buildDateTransformStatements({
+    schema: successType.originalSchema,
+    accessor: 'data',
+    context,
+  });
+  if (statements.length === 0) return undefined;
+
+  const dataType = response.definition.success || 'unknown';
+  const name = `deserialize${pascal(operationName)}Response`;
+  const implementation = `const ${name} = (data: ${dataType}): ${dataType} => {
+  if (data == null) return data;
+${indent(statements).join('\n')}
+  return data;
+};
+`;
+
+  return { name, implementation };
 };
