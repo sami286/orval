@@ -1,0 +1,26 @@
+packages/core/src/generators/index.ts
+  s_1675e6ecc14bca::t_60227e7ed40ed2 2
+packages/core/src/generators/date-transform.test.ts
+  s_1675e6ecc14bca::t_aab996c93bfed1 306-412
+  s_1675e6ecc14bca::t_c33ba563022915 3-6
+  s_1675e6ecc14bca::t_bdb57d841831ba 7,10,413-426
+packages/core/src/generators/date-transform.ts
+  s_1675e6ecc14bca::t_48c4a069f63d3a 162-214
+  s_1675e6ecc14bca::t_fbb9c1bafa9aa9 4,8
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.14",
+  "base_commit_sha": "61f885394e127b232b49428d15584a30883ad46b",
+  "prompts": {},
+  "sessions": {
+    "s_1675e6ecc14bca": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "3dac3267-0ca3-4f15-a724-126c37680021",
+        "model": "claude-fable-5"
+      },
+      "human_author": "Samu <samuel.requena@archlet.ch>"
+    }
+  }
+}
