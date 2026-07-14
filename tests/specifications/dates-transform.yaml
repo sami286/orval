@@ -1,0 +1,50 @@
+openapi: 3.0.0
+info:
+  title: Dates transform
+  version: 1.0.0
+paths:
+  /auctions/{auctionId}:
+    get:
+      operationId: getAuctionDetails
+      parameters:
+        - name: auctionId
+          in: path
+          required: true
+          schema: { type: string }
+      responses:
+        '200':
+          description: ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuctionDetails'
+  /auctions:
+    get:
+      operationId: listAuctionNames
+      responses:
+        '200':
+          description: dates-free — must generate no deserializer
+          content:
+            application/json:
+              schema:
+                type: array
+                items: { type: string }
+components:
+  schemas:
+    AuctionDetails:
+      type: object
+      required: [startTime, log]
+      properties:
+        startTime: { type: string, format: date-time }
+        endTime: { type: string, format: date-time, nullable: true }
+        name: { type: string }
+        log:
+          type: array
+          items:
+            $ref: '#/components/schemas/LogEvent'
+    LogEvent:
+      type: object
+      required: [createdAt]
+      properties:
+        createdAt: { type: string, format: date-time }
+        message: { type: string }
