@@ -1,0 +1,24 @@
+packages/orval/src/utils/options.ts
+  s_1675e6ecc14bca::t_3d024f34b62161 709-712
+packages/core/src/types.ts
+  s_1675e6ecc14bca::t_e28f3f9b5af657 718-723
+  s_1675e6ecc14bca::t_e126cc31b6d65e 147
+packages/orval/src/utils/options.test.ts
+  s_1675e6ecc14bca::t_e7fdd94d6a5285 1967-2018
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.14",
+  "base_commit_sha": "b7fc2980ef95ddee28c449ffa1e7fa25b63857e8",
+  "prompts": {},
+  "sessions": {
+    "s_1675e6ecc14bca": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "3dac3267-0ca3-4f15-a724-126c37680021",
+        "model": "claude-fable-5"
+      },
+      "human_author": "Samu <samuel.requena@archlet.ch>"
+    }
+  }
+}
