@@ -2998,6 +2998,8 @@ export default defineConfig({
 
 > **Important:** You must provide an Axios converter to convert serialized date strings to `Date` objects. This option only affects the TypeScript definition.
 
+If you also want runtime conversion, prefer `useDatesTransform` below; the interceptor approach traverses every response and can convert date-looking strings that are not schema dates.
+
 ```ts title="axios-instance.ts"
 import axios from 'axios';
 
@@ -3035,6 +3037,34 @@ export function handleDates(body: any) {
 ```
 
 > If using `fetch` client with `useDates: true`, query parameters of type Date are stringified using `toISOString()`.
+
+### useDatesTransform
+
+**Type:** `Boolean`
+
+**Default:** `false`
+
+Use this property to also convert dates at runtime. While `useDates` only
+changes the generated TypeScript types, `useDatesTransform` additionally
+generates a small `deserialize<OperationName>Response` function for every
+operation whose response schema declares `format: date` or
+`format: date-time` fields, and chains it onto the generated call:
+
+```ts
+export const getAuctionDetails = (auctionId: string) =>
+  instance<AuctionDetails>({ url: `/auctions/${auctionId}`, method: 'GET' })
+    .then(deserializeGetAuctionDetailsResponse);
+```
+
+Only schema-declared date fields are converted — no response-wide traversal,
+no pattern matching on strings — and operations without date fields generate
+no extra code. Setting `useDatesTransform: true` implies `useDates: true`.
+This removes the need for the axios interceptor shown under `useDates`.
+
+Current limitations: dates inside `oneOf`/`anyOf` variants and
+`additionalProperties` maps are not converted, responses with multiple
+success shapes are skipped, and only the axios-based clients are wired
+(`react-query`, `vue-query`, `svelte-query` with `httpClient: 'axios'`).
 
 ### useBigInt
 
