@@ -622,6 +622,7 @@ describe('generateAxiosRequestFunction with useDatesTransform', () => {
     imports: [],
     schemas: [],
     isRef: false,
+    dependencies: [],
     ...overrides,
   });
 

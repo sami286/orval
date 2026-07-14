@@ -75,7 +75,7 @@ export const buildDateTransformStatements = ({
     // own `properties` (or, less commonly, `items`), and every one of them
     // must contribute its date statements.
     const allOfStatements = schema.allOf
-      ? schema.allOf.flatMap((branch) =>
+      ? schema.allOf.flatMap((branch: SchemaOrRef) =>
           buildDateTransformStatements({
             schema: branch,
             accessor,

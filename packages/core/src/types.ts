@@ -144,7 +144,7 @@ export interface NormalizedOverrideOutput {
 
   requestOptions: Record<string, unknown> | boolean;
   useDates?: boolean;
-  useDatesTransform: boolean;
+  useDatesTransform?: boolean;
   useTypeOverInterfaces?: boolean;
   useDeprecatedOperations?: boolean;
   useBigInt?: boolean;
