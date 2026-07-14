@@ -1,0 +1,23 @@
+packages/core/src/generators/date-transform.test.ts
+  s_1675e6ecc14bca::t_86ea78a6a1c0ff 106-126
+  s_1675e6ecc14bca::t_453a545e0ee520 238-262
+packages/core/src/generators/date-transform.ts
+  s_1675e6ecc14bca::t_41b34a2eef0186 47-51,54-57,62-65
+  s_1675e6ecc14bca::t_3b18714229ced3 105,107-109,118,127-134,136,155-158
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.14",
+  "base_commit_sha": "b527448317e21b3c667d3a247e4b6dce1c9f4ff3",
+  "prompts": {},
+  "sessions": {
+    "s_1675e6ecc14bca": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "3dac3267-0ca3-4f15-a724-126c37680021",
+        "model": "claude-fable-5"
+      },
+      "human_author": "Samu <samuel.requena@archlet.ch>"
+    }
+  }
+}
