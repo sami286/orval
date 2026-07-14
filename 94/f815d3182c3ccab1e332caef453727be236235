@@ -1,0 +1,26 @@
+packages/query/src/client.test.ts
+  s_1675e6ecc14bca::t_fede3ebfe7760d 777-780
+  s_1675e6ecc14bca::t_8fc6333f3c28a0 1-8,12,14
+  s_1675e6ecc14bca::t_5c26a390e5dcb2 605-776,781-786
+packages/query/src/client.ts
+  s_1675e6ecc14bca::t_4502ebd6d6efd1 376,379,391,400
+  s_1675e6ecc14bca::t_35675855fe9d70 434,441-445
+  s_1675e6ecc14bca::t_523f06e970fa64 324-333
+  s_1675e6ecc14bca::t_9258735b7f4450 7
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.14",
+  "base_commit_sha": "94f815d3182c3ccab1e332caef453727be236235",
+  "prompts": {},
+  "sessions": {
+    "s_1675e6ecc14bca": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "3dac3267-0ca3-4f15-a724-126c37680021",
+        "model": "claude-fable-5"
+      },
+      "human_author": "Samu <samuel.requena@archlet.ch>"
+    }
+  }
+}
