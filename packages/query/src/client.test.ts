@@ -793,5 +793,28 @@ describe('generateAxiosRequestFunction with useDatesTransform', () => {
       adapter,
     );
     expect(off).not.toContain('deserializeGetPetResponse');
+
+    const dateFree = generateAxiosRequestFunction(
+      {
+        ...verbOptions,
+        response: createResponse({
+          types: {
+            success: [
+              createSuccessType({
+                originalSchema: {
+                  type: 'object',
+                  properties: { name: { type: 'string' } },
+                },
+              }),
+            ],
+            errors: [],
+          },
+        }),
+      },
+      options,
+      adapter,
+    );
+    expect(dateFree).not.toContain('deserializeGetPetResponse');
+    expect(dateFree).not.toContain('.then(');
   });
 });
