@@ -1,0 +1,25 @@
+tests/__snapshots__/react-query/dates-transform/endpoints.ts
+  s_0dd5d61906de82::t_4e92ca4f2b5155 2
+tests/__snapshots__/react-query/dates-transform/model/auctionDetails.ts
+  s_0dd5d61906de82::t_2b023416c05a19 2
+tests/__snapshots__/react-query/dates-transform/model/index.ts
+  s_0dd5d61906de82::t_e12c5322a7defc 2
+tests/__snapshots__/react-query/dates-transform/model/logEvent.ts
+  s_0dd5d61906de82::t_36dbfe61db5b2a 2
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.14",
+  "base_commit_sha": "e1ddc5d641d313142dbfe06f4d79d24c60c196d3",
+  "prompts": {},
+  "sessions": {
+    "s_0dd5d61906de82": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "0e9255e7-19c9-407c-9848-a6db25b3c920",
+        "model": "claude-fable-5"
+      },
+      "human_author": "Samu <samuel.requena@archlet.ch>"
+    }
+  }
+}
