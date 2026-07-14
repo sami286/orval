@@ -44,25 +44,25 @@ export const schemaHasDateFields = (
     visitedRefs.add(ref);
   }
 
-  if (isDateSchema(schema)) return true;
-
-  if (schema.allOf) {
-    return schema.allOf.some((branch) =>
+  let result = false;
+  if (isDateSchema(schema)) {
+    result = true;
+  } else if (schema.allOf) {
+    result = schema.allOf.some((branch) =>
       schemaHasDateFields(branch, context, visitedRefs),
     );
-  }
-
-  if (schema.items) {
-    return schemaHasDateFields(schema.items, context, visitedRefs);
-  }
-
-  if (schema.properties) {
-    return Object.values(schema.properties).some((property) =>
+  } else if (schema.items) {
+    result = schemaHasDateFields(schema.items, context, visitedRefs);
+  } else if (schema.properties) {
+    result = Object.values(schema.properties).some((property) =>
       schemaHasDateFields(property, context, visitedRefs),
     );
   }
 
-  return false;
+  if (ref) {
+    visitedRefs.delete(ref);
+  }
+  return result;
 };
 
 const isNullable = (schema: OpenApiSchemaObject): boolean =>
@@ -102,12 +102,11 @@ export const buildDateTransformStatements = ({
     visitedRefs.add(ref);
   }
 
+  let result: string[] = [];
   if (isDateSchema(schema)) {
-    return [`${accessor} = new Date(${accessor});`];
-  }
-
-  if (schema.allOf) {
-    return schema.allOf.flatMap((branch) =>
+    result = [`${accessor} = new Date(${accessor});`];
+  } else if (schema.allOf) {
+    result = schema.allOf.flatMap((branch) =>
       buildDateTransformStatements({
         schema: branch,
         accessor,
@@ -116,9 +115,7 @@ export const buildDateTransformStatements = ({
         depth,
       }),
     );
-  }
-
-  if (schema.items) {
+  } else if (schema.items) {
     const index = `i${depth}`;
     const statements = buildDateTransformStatements({
       schema: schema.items,
@@ -127,17 +124,16 @@ export const buildDateTransformStatements = ({
       visitedRefs,
       depth: depth + 1,
     });
-    if (statements.length === 0) return [];
-    return [
-      `for (let ${index} = 0; ${index} < ${accessor}.length; ${index}++) {`,
-      ...indent(statements),
-      '}',
-    ];
-  }
-
-  if (schema.properties) {
+    if (statements.length > 0) {
+      result = [
+        `for (let ${index} = 0; ${index} < ${accessor}.length; ${index}++) {`,
+        ...indent(statements),
+        '}',
+      ];
+    }
+  } else if (schema.properties) {
     const required = new Set(schema.required ?? []);
-    return Object.entries(schema.properties).flatMap(([key, property]) => {
+    result = Object.entries(schema.properties).flatMap(([key, property]) => {
       const target = propertyAccessor(accessor, key);
       const statements = buildDateTransformStatements({
         schema: property,
@@ -156,5 +152,8 @@ export const buildDateTransformStatements = ({
     });
   }
 
-  return [];
+  if (ref) {
+    visitedRefs.delete(ref);
+  }
+  return result;
 };

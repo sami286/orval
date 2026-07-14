@@ -103,6 +103,27 @@ describe('schemaHasDateFields', () => {
       schemaHasDateFields({ $ref: '#/components/schemas/Node' }, context),
     ).toBe(false);
   });
+
+  it('detects dates in a later sibling $ref after a date-free sibling $ref', () => {
+    const context = makeContext({
+      PlainMeta: {
+        type: 'object',
+        properties: { at: { type: 'string' } },
+      },
+      DatedMeta: {
+        type: 'object',
+        properties: { at: { type: 'string', format: 'date-time' } },
+      },
+    });
+    const schema: OpenApiSchemaObject = {
+      type: 'object',
+      properties: {
+        plain: { $ref: '#/components/schemas/PlainMeta' },
+        dated: { $ref: '#/components/schemas/DatedMeta' },
+      },
+    };
+    expect(schemaHasDateFields(schema, context)).toBe(true);
+  });
 });
 
 describe('buildDateTransformStatements', () => {
@@ -211,6 +232,31 @@ describe('buildDateTransformStatements', () => {
 
     expect(statements).toEqual([
       'data["created-at"] = new Date(data["created-at"]);',
+    ]);
+  });
+
+  it('transforms repeated sibling $refs independently', () => {
+    const context = makeContext({
+      Actor: {
+        type: 'object',
+        required: ['at'],
+        properties: { at: { type: 'string', format: 'date-time' } },
+      },
+    });
+    const schema: OpenApiSchemaObject = {
+      type: 'object',
+      required: ['createdBy', 'updatedBy'],
+      properties: {
+        createdBy: { $ref: '#/components/schemas/Actor' },
+        updatedBy: { $ref: '#/components/schemas/Actor' },
+      },
+    };
+
+    expect(
+      buildDateTransformStatements({ schema, accessor: 'data', context }),
+    ).toEqual([
+      'data.createdBy.at = new Date(data.createdBy.at);',
+      'data.updatedBy.at = new Date(data.updatedBy.at);',
     ]);
   });
 
