@@ -1,0 +1,39 @@
+docs/content/docs/reference/configuration/output.mdx
+  s_0dd5d61906de82::t_c2203e1eb1fee6 3053-3055
+tests/specifications/dates-transform.yaml
+  s_0dd5d61906de82::t_430b52a1e864cc 6,8,10,20-21,23,25,36-37,39,41-43,45,56,58,60-62,64,66-68,70,72-73,76,79-80
+packages/core/src/generators/date-transform.test.ts
+  s_0dd5d61906de82::t_82a5d15ccf2d59 305,307,309,312,315,324-325,328,330-331,344-346,349-351,363,365,367-368,381-384,388-390,401,403,405,415,419,421,435-437,478,480,496-497,500,502-503,519-521,524-526,542-543,546,548-549,565-567,570-572,642,644,646,649,652,658-659,662,664-665,671,678-679
+tests/__snapshots__/react-query/dates-transform/endpoints.ts
+  s_0dd5d61906de82::t_e43313f2520225 20,41-43,46,49-51,53-55,60-61,70-71,74-75,78,82,92,94-96,101,104,110-111,113,115-116,119,123,130,132,141-142,145,149,156,158,167-168,171,175,186-187,190,194,204,214-216,219,222,224-226,229-231,239-240,243-244,247,250,256,258-260,265,268,274-275,277,279-280,283,286,290,292,301-302,305,308,312,314,323-324,327,330,338-339,342,345,352,362-363,366-367,370-371,375,380,383-384,387,393-394,396,398-399,405,412,414,423-424,430,437,439,448-449,455,466-467,473,483
+tests/__snapshots__/react-query/dates-transform/model/cat.ts
+  s_0dd5d61906de82::t_006c2701bfdb26 7,9-11
+tests/__snapshots__/react-query/dates-transform/model/catPetType.ts
+  s_0dd5d61906de82::t_50af976f6ba395 8,10-11
+tests/__snapshots__/react-query/dates-transform/model/dog.ts
+  s_0dd5d61906de82::t_0bf041c394648a 7,9-10,12
+tests/__snapshots__/react-query/dates-transform/model/dogPetType.ts
+  s_0dd5d61906de82::t_d8db032b00ec2d 8,10-11
+tests/__snapshots__/react-query/dates-transform/model/index.ts
+  s_0dd5d61906de82::t_fc7f747f84642a 8-13
+tests/__snapshots__/react-query/dates-transform/model/orderDetails.ts
+  s_0dd5d61906de82::t_3d818e39d40d51 7,9-10,12,15
+tests/__snapshots__/react-query/dates-transform/model/orderEvent.ts
+  s_0dd5d61906de82::t_98def2513ea983 8
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.14",
+  "base_commit_sha": "4402cbd4a21a1d4a7ace92ae809d6c0ccfec39e8",
+  "prompts": {},
+  "sessions": {
+    "s_0dd5d61906de82": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "0e9255e7-19c9-407c-9848-a6db25b3c920",
+        "model": "claude-fable-5"
+      },
+      "human_author": "Samu <samuel.requena@archlet.ch>"
+    }
+  }
+}
