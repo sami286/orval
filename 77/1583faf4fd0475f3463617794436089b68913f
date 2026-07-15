@@ -1,0 +1,31 @@
+tests/specifications/dates-transform.yaml
+  s_0dd5d61906de82::t_d22a01e0fe6a11 21-42,56-67
+tests/__snapshots__/react-query/dates-transform/endpoints.ts
+  s_0dd5d61906de82::t_7421beeb9eec65 20-24,211-381
+tests/__snapshots__/react-query/dates-transform/model/dutchAuctionSummary.ts
+  s_0dd5d61906de82::t_87bd9bdf3b2b78 1-13
+tests/__snapshots__/react-query/dates-transform/model/dutchAuctionSummaryAuctionType.ts
+  s_0dd5d61906de82::t_b9b691e482a987 1-13
+tests/__snapshots__/react-query/dates-transform/model/englishAuctionSummary.ts
+  s_0dd5d61906de82::t_23a61de611a584 1-12
+tests/__snapshots__/react-query/dates-transform/model/englishAuctionSummaryAuctionType.ts
+  s_0dd5d61906de82::t_4c3fd896ea2c71 1-13
+tests/__snapshots__/react-query/dates-transform/model/index.ts
+  s_0dd5d61906de82::t_dcac321d2f8be4 9-12
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.14",
+  "base_commit_sha": "771583faf4fd0475f3463617794436089b68913f",
+  "prompts": {},
+  "sessions": {
+    "s_0dd5d61906de82": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "0e9255e7-19c9-407c-9848-a6db25b3c920",
+        "model": "claude-fable-5"
+      },
+      "human_author": "Samu <samuel.requena@archlet.ch>"
+    }
+  }
+}
