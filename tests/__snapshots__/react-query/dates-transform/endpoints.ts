@@ -59,7 +59,11 @@ const deserializeGetAuctionDetailsResponse = (
     data.endTime = new Date(data.endTime);
   }
   for (let i0 = 0; i0 < data.log.length; i0++) {
-    data.log[i0].createdAt = new Date(data.log[i0].createdAt);
+    const item0 = data.log[i0];
+    item0.createdAt = new Date(item0.createdAt);
+    if (item0.resolvedAt != null) {
+      item0.resolvedAt = new Date(item0.resolvedAt);
+    }
   }
   return data;
 };

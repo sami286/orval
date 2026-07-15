@@ -7,5 +7,6 @@
 
 export interface LogEvent {
   createdAt: Date;
+  resolvedAt?: Date;
   message?: string;
 }

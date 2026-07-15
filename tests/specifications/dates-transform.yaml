@@ -81,4 +81,5 @@ components:
       required: [createdAt]
       properties:
         createdAt: { type: string, format: date-time }
+        resolvedAt: { type: string, format: date-time }
         message: { type: string }

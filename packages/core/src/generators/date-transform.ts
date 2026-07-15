@@ -151,9 +151,29 @@ const buildItemsStatements = ({
   depth: number;
 }): string[] => {
   const index = `i${depth}`;
+
+  // Date-string elements need the indexed form so the `new Date(...)`
+  // result can be written back into the array slot; bare elements are
+  // never optional, so no narrowing is required.
+  const { schema: resolvedItems } = resolveSchema(items, context);
+  if (isDateSchema(resolvedItems)) {
+    const element = `${accessor}[${index}]`;
+    return [
+      `for (let ${index} = 0; ${index} < ${accessor}.length; ${index}++) {`,
+      `  ${element} = new Date(${element});`,
+      '}',
+    ];
+  }
+
+  // Object/array elements are hoisted into a const: TypeScript does not
+  // carry `!= null` narrowing across statements for variable-indexed
+  // accesses (`data[i0].at`), but does for a hoisted local. Mutating the
+  // local's properties mutates the same object, so in-place semantics
+  // are unchanged.
+  const item = `item${depth}`;
   const statements = buildDateTransformStatements({
     schema: items,
-    accessor: `${accessor}[${index}]`,
+    accessor: item,
     context,
     visitedRefs,
     depth: depth + 1,
@@ -162,6 +182,7 @@ const buildItemsStatements = ({
 
   return [
     `for (let ${index} = 0; ${index} < ${accessor}.length; ${index}++) {`,
+    `  const ${item} = ${accessor}[${index}];`,
     ...indent(statements),
     '}',
   ];

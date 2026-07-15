@@ -73,6 +73,35 @@ describe('buildDateTransformStatements', () => {
     );
   });
 
+  it('hoists array items into a const so optional-date narrowing survives', () => {
+    const schema: OpenApiSchemaObject = {
+      type: 'array',
+      items: {
+        type: 'object',
+        properties: {
+          resolvedAt: { type: 'string', format: 'date-time' },
+        },
+      },
+    };
+
+    const statements = buildDateTransformStatements({
+      schema,
+      accessor: 'data',
+      context: makeContext(),
+    });
+
+    expect(statements.join('\n')).toBe(
+      [
+        'for (let i0 = 0; i0 < data.length; i0++) {',
+        '  const item0 = data[i0];',
+        '  if (item0.resolvedAt != null) {',
+        '    item0.resolvedAt = new Date(item0.resolvedAt);',
+        '  }',
+        '}',
+      ].join('\n'),
+    );
+  });
+
   it('recurses through $ref, allOf and nested arrays, pruning date-free branches', () => {
     const context = makeContext({
       LogEvent: {
@@ -109,7 +138,8 @@ describe('buildDateTransformStatements', () => {
       [
         'if (data.log != null) {',
         '  for (let i0 = 0; i0 < data.log.length; i0++) {',
-        '    data.log[i0].createdAt = new Date(data.log[i0].createdAt);',
+        '    const item0 = data.log[i0];',
+        '    item0.createdAt = new Date(item0.createdAt);',
         '  }',
         '}',
       ].join('\n'),
