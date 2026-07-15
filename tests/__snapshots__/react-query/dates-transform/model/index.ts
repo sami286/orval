@@ -6,4 +6,8 @@
  */
 
 export * from './auctionDetails';
+export * from './dutchAuctionSummary';
+export * from './dutchAuctionSummaryAuctionType';
+export * from './englishAuctionSummary';
+export * from './englishAuctionSummaryAuctionType';
 export * from './logEvent';

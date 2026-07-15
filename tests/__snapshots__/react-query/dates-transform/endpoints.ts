@@ -17,7 +17,11 @@ import type {
   UseQueryResult,
 } from '@tanstack/react-query';
 
-import type { AuctionDetails } from './model';
+import type {
+  AuctionDetails,
+  DutchAuctionSummary,
+  EnglishAuctionSummary,
+} from './model';
 
 import { customInstance } from '../../../mutators/custom-instance';
 const withQueryKey = <T extends object, K>(
@@ -195,6 +199,177 @@ export function useGetAuctionDetails<
   queryKey: DataTag<QueryKey, TData, TError>;
 } {
   const queryOptions = getGetAuctionDetailsQueryOptions(auctionId, options);
+
+  const query = useQuery(queryOptions, queryClient) as UseQueryResult<
+    TData,
+    TError
+  > & { queryKey: DataTag<QueryKey, TData, TError> };
+
+  return withQueryKey(query, queryOptions.queryKey);
+}
+
+export const getAuctionSummary = (auctionId: string, signal?: AbortSignal) => {
+  return customInstance<EnglishAuctionSummary | DutchAuctionSummary>({
+    url: `/auctions/${auctionId}/summary`,
+    method: 'GET',
+    signal,
+  }).then(deserializeGetAuctionSummaryResponse);
+};
+
+const deserializeGetAuctionSummaryResponse = (
+  data: EnglishAuctionSummary | DutchAuctionSummary,
+): EnglishAuctionSummary | DutchAuctionSummary => {
+  if (data == null) return data;
+  switch (data.auctionType) {
+    case 'english': {
+      data.startTime = new Date(data.startTime);
+      break;
+    }
+    case 'dutch': {
+      if (data.endTime != null) {
+        data.endTime = new Date(data.endTime);
+      }
+      break;
+    }
+  }
+  return data;
+};
+
+export const getGetAuctionSummaryQueryKey = (auctionId: string) => {
+  return [`/auctions/${auctionId}/summary`] as const;
+};
+
+export const getGetAuctionSummaryQueryOptions = <
+  TData = Awaited<ReturnType<typeof getAuctionSummary>>,
+  TError = unknown,
+>(
+  auctionId: string,
+  options?: {
+    query?: Partial<
+      UseQueryOptions<
+        Awaited<ReturnType<typeof getAuctionSummary>>,
+        TError,
+        TData
+      >
+    >;
+  },
+) => {
+  const { query: queryOptions } = options ?? {};
+
+  const queryKey =
+    queryOptions?.queryKey ?? getGetAuctionSummaryQueryKey(auctionId);
+
+  const queryFn: QueryFunction<
+    Awaited<ReturnType<typeof getAuctionSummary>>
+  > = ({ signal }) => getAuctionSummary(auctionId, signal);
+
+  return {
+    queryKey,
+    queryFn,
+    enabled: auctionId !== null && auctionId !== undefined,
+    ...queryOptions,
+  } as UseQueryOptions<
+    Awaited<ReturnType<typeof getAuctionSummary>>,
+    TError,
+    TData
+  > & { queryKey: DataTag<QueryKey, TData, TError> };
+};
+
+export type GetAuctionSummaryQueryResult = NonNullable<
+  Awaited<ReturnType<typeof getAuctionSummary>>
+>;
+export type GetAuctionSummaryQueryError = unknown;
+
+export function useGetAuctionSummary<
+  TData = Awaited<ReturnType<typeof getAuctionSummary>>,
+  TError = unknown,
+>(
+  auctionId: string,
+  options: {
+    query: Partial<
+      UseQueryOptions<
+        Awaited<ReturnType<typeof getAuctionSummary>>,
+        TError,
+        TData
+      >
+    > &
+      Pick<
+        DefinedInitialDataOptions<
+          Awaited<ReturnType<typeof getAuctionSummary>>,
+          TError,
+          Awaited<ReturnType<typeof getAuctionSummary>>
+        >,
+        'initialData'
+      >;
+  },
+  queryClient?: QueryClient,
+): DefinedUseQueryResult<TData, TError> & {
+  queryKey: DataTag<QueryKey, TData, TError>;
+};
+export function useGetAuctionSummary<
+  TData = Awaited<ReturnType<typeof getAuctionSummary>>,
+  TError = unknown,
+>(
+  auctionId: string,
+  options?: {
+    query?: Partial<
+      UseQueryOptions<
+        Awaited<ReturnType<typeof getAuctionSummary>>,
+        TError,
+        TData
+      >
+    > &
+      Pick<
+        UndefinedInitialDataOptions<
+          Awaited<ReturnType<typeof getAuctionSummary>>,
+          TError,
+          Awaited<ReturnType<typeof getAuctionSummary>>
+        >,
+        'initialData'
+      >;
+  },
+  queryClient?: QueryClient,
+): UseQueryResult<TData, TError> & {
+  queryKey: DataTag<QueryKey, TData, TError>;
+};
+export function useGetAuctionSummary<
+  TData = Awaited<ReturnType<typeof getAuctionSummary>>,
+  TError = unknown,
+>(
+  auctionId: string,
+  options?: {
+    query?: Partial<
+      UseQueryOptions<
+        Awaited<ReturnType<typeof getAuctionSummary>>,
+        TError,
+        TData
+      >
+    >;
+  },
+  queryClient?: QueryClient,
+): UseQueryResult<TData, TError> & {
+  queryKey: DataTag<QueryKey, TData, TError>;
+};
+
+export function useGetAuctionSummary<
+  TData = Awaited<ReturnType<typeof getAuctionSummary>>,
+  TError = unknown,
+>(
+  auctionId: string,
+  options?: {
+    query?: Partial<
+      UseQueryOptions<
+        Awaited<ReturnType<typeof getAuctionSummary>>,
+        TError,
+        TData
+      >
+    >;
+  },
+  queryClient?: QueryClient,
+): UseQueryResult<TData, TError> & {
+  queryKey: DataTag<QueryKey, TData, TError>;
+} {
+  const queryOptions = getGetAuctionSummaryQueryOptions(auctionId, options);
 
   const query = useQuery(queryOptions, queryClient) as UseQueryResult<
     TData,

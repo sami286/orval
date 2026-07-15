@@ -18,6 +18,28 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/AuctionDetails'
+  /auctions/{auctionId}/summary:
+    get:
+      operationId: getAuctionSummary
+      parameters:
+        - name: auctionId
+          in: path
+          required: true
+          schema: { type: string }
+      responses:
+        '200':
+          description: ok
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  - $ref: '#/components/schemas/EnglishAuctionSummary'
+                  - $ref: '#/components/schemas/DutchAuctionSummary'
+                discriminator:
+                  propertyName: auctionType
+                  mapping:
+                    english: '#/components/schemas/EnglishAuctionSummary'
+                    dutch: '#/components/schemas/DutchAuctionSummary'
   /auctions:
     get:
       operationId: listAuctionNames
@@ -31,6 +53,18 @@ paths:
                 items: { type: string }
 components:
   schemas:
+    EnglishAuctionSummary:
+      type: object
+      required: [auctionType, startTime]
+      properties:
+        auctionType: { type: string, enum: [english] }
+        startTime: { type: string, format: date-time }
+    DutchAuctionSummary:
+      type: object
+      required: [auctionType]
+      properties:
+        auctionType: { type: string, enum: [dutch] }
+        endTime: { type: string, format: date-time, nullable: true }
     AuctionDetails:
       type: object
       required: [startTime, log]
