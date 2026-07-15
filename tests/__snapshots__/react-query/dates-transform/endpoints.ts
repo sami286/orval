@@ -58,6 +58,9 @@ const deserializeGetAuctionDetailsResponse = (
   if (data.endTime != null) {
     data.endTime = new Date(data.endTime);
   }
+  if (data.lastViewedAt != null) {
+    data.lastViewedAt = new Date(data.lastViewedAt);
+  }
   for (let i0 = 0; i0 < data.log.length; i0++) {
     const item0 = data.log[i0];
     item0.createdAt = new Date(item0.createdAt);

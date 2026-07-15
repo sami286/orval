@@ -71,6 +71,7 @@ components:
       properties:
         startTime: { type: string, format: date-time }
         endTime: { type: string, format: date-time, nullable: true }
+        lastViewedAt: { type: string, format: date-time }
         name: { type: string }
         log:
           type: array

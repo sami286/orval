@@ -10,6 +10,7 @@ export interface AuctionDetails {
   startTime: Date;
   /** @nullable */
   endTime?: Date | null;
+  lastViewedAt?: Date;
   name?: string;
   log: LogEvent[];
 }

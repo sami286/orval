@@ -3041,7 +3041,6 @@ export function handleDates(body: any) {
 ### useDatesTransform
 
 **Type:** `Boolean`
-
 **Default:** `false`
 
 Use this property to also convert dates at runtime. While `useDates` only
@@ -3051,9 +3050,11 @@ operation whose response schema declares `format: date` or
 `format: date-time` fields, and chains it onto the generated call:
 
 ```ts
-export const getAuctionDetails = (auctionId: string) =>
-  instance<AuctionDetails>({ url: `/auctions/${auctionId}`, method: 'GET' })
-    .then(deserializeGetAuctionDetailsResponse);
+export const getAuctionDetails = (auctionId: string) => {
+  return customInstance<AuctionDetails>({ url: `/auctions/${auctionId}`, method: 'GET' }).then(
+    deserializeGetAuctionDetailsResponse,
+  );
+};
 ```
 
 Only schema-declared date fields are converted — no response-wide traversal,
@@ -3068,8 +3069,8 @@ given payload matched; a discriminated union with an explicit `mapping` is
 converted, emitting a `switch` on the discriminator property with one `case`
 per mapping key. `additionalProperties` maps are not converted, responses
 with multiple success shapes are skipped, and only the axios-based clients
-are wired (`react-query`, `vue-query`, `svelte-query` with
-`httpClient: 'axios'`).
+are wired (`react-query`, `vue-query`, `svelte-query`, and `solid-query`
+with `httpClient: 'axios'`).
 
 ### useBigInt
 
