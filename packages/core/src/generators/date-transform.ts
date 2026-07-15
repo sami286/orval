@@ -158,9 +158,13 @@ const buildItemsStatements = ({
   const { schema: resolvedItems } = resolveSchema(items, context);
   if (isDateSchema(resolvedItems)) {
     const element = `${accessor}[${index}]`;
+    const assignment = `${element} = new Date(${element});`;
+    const body = isNullable(resolvedItems)
+      ? [`if (${element} != null) {`, `  ${assignment}`, '}']
+      : [assignment];
     return [
       `for (let ${index} = 0; ${index} < ${accessor}.length; ${index}++) {`,
-      `  ${element} = new Date(${element});`,
+      ...indent(body),
       '}',
     ];
   }
@@ -180,10 +184,14 @@ const buildItemsStatements = ({
   });
   if (statements.length === 0) return [];
 
+  const body = isNullable(resolvedItems)
+    ? [`if (${item} != null) {`, ...indent(statements), '}']
+    : statements;
+
   return [
     `for (let ${index} = 0; ${index} < ${accessor}.length; ${index}++) {`,
     `  const ${item} = ${accessor}[${index}];`,
-    ...indent(statements),
+    ...indent(body),
     '}',
   ];
 };

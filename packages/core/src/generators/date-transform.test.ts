@@ -146,6 +146,55 @@ describe('buildDateTransformStatements', () => {
     );
   });
 
+  it('guards nullable date-string array elements', () => {
+    const schema: OpenApiSchemaObject = {
+      type: 'array',
+      items: { type: 'string', format: 'date-time', nullable: true },
+    };
+
+    expect(
+      buildDateTransformStatements({
+        schema,
+        accessor: 'data',
+        context: makeContext(),
+      }),
+    ).toEqual([
+      'for (let i0 = 0; i0 < data.length; i0++) {',
+      '  if (data[i0] != null) {',
+      '    data[i0] = new Date(data[i0]);',
+      '  }',
+      '}',
+    ]);
+  });
+
+  it('guards nullable object array elements around the hoisted item', () => {
+    const context = makeContext({
+      LogEvent: {
+        type: 'object',
+        required: ['createdAt'],
+        properties: { createdAt: { type: 'string', format: 'date-time' } },
+      },
+    });
+    const schema = {
+      type: 'array',
+      items: {
+        allOf: [{ $ref: '#/components/schemas/LogEvent' }],
+        nullable: true,
+      },
+    } as OpenApiSchemaObject;
+
+    expect(
+      buildDateTransformStatements({ schema, accessor: 'data', context }),
+    ).toEqual([
+      'for (let i0 = 0; i0 < data.length; i0++) {',
+      '  const item0 = data[i0];',
+      '  if (item0 != null) {',
+      '    item0.createdAt = new Date(item0.createdAt);',
+      '  }',
+      '}',
+    ]);
+  });
+
   it('uses bracket access for non-identifier property names', () => {
     const schema: OpenApiSchemaObject = {
       type: 'object',
@@ -475,6 +524,52 @@ describe('buildDateTransformStatements — discriminated unions', () => {
         "    case 'dutch_auction': {",
         '      if (data.details.endTime != null) {',
         '        data.details.endTime = new Date(data.details.endTime);',
+        '      }',
+        '      break;',
+        '    }',
+        '  }',
+        '}',
+      ].join('\n'),
+    );
+  });
+
+  it('emits a hoisted item and a switch for a discriminated union inside array items', () => {
+    const context = makeUnionContext();
+    const schema: OpenApiSchemaObject = {
+      type: 'array',
+      items: {
+        oneOf: [
+          { $ref: '#/components/schemas/EnglishDetails' },
+          { $ref: '#/components/schemas/DutchDetails' },
+        ],
+        discriminator: {
+          propertyName: 'auctionType',
+          mapping: {
+            reverse_english_auction: '#/components/schemas/EnglishDetails',
+            dutch_auction: '#/components/schemas/DutchDetails',
+          },
+        },
+      } as OpenApiSchemaObject,
+    };
+
+    const statements = buildDateTransformStatements({
+      schema,
+      accessor: 'data',
+      context,
+    });
+
+    expect(statements.join('\n')).toBe(
+      [
+        'for (let i0 = 0; i0 < data.length; i0++) {',
+        '  const item0 = data[i0];',
+        '  switch (item0.auctionType) {',
+        "    case 'reverse_english_auction': {",
+        '      item0.startTime = new Date(item0.startTime);',
+        '      break;',
+        '    }',
+        "    case 'dutch_auction': {",
+        '      if (item0.endTime != null) {',
+        '        item0.endTime = new Date(item0.endTime);',
         '      }',
         '      break;',
         '    }',
