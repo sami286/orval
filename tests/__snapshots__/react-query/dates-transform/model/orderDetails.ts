@@ -4,13 +4,13 @@
  * Dates transform
  * OpenAPI spec version: 1.0.0
  */
-import type { LogEvent } from './logEvent';
+import type { OrderEvent } from './orderEvent';
 
-export interface AuctionDetails {
-  startTime: Date;
+export interface OrderDetails {
+  placedAt: Date;
   /** @nullable */
-  endTime?: Date | null;
+  deliveredAt?: Date | null;
   lastViewedAt?: Date;
   name?: string;
-  log: LogEvent[];
+  events: OrderEvent[];
 }

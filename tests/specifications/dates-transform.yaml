@@ -3,11 +3,11 @@ info:
   title: Dates transform
   version: 1.0.0
 paths:
-  /auctions/{auctionId}:
+  /orders/{orderId}:
     get:
-      operationId: getAuctionDetails
+      operationId: getOrderDetails
       parameters:
-        - name: auctionId
+        - name: orderId
           in: path
           required: true
           schema: { type: string }
@@ -17,12 +17,12 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/AuctionDetails'
-  /auctions/{auctionId}/summary:
+                $ref: '#/components/schemas/OrderDetails'
+  /pets/{petId}:
     get:
-      operationId: getAuctionSummary
+      operationId: getPetProfile
       parameters:
-        - name: auctionId
+        - name: petId
           in: path
           required: true
           schema: { type: string }
@@ -33,16 +33,16 @@ paths:
             application/json:
               schema:
                 oneOf:
-                  - $ref: '#/components/schemas/EnglishAuctionSummary'
-                  - $ref: '#/components/schemas/DutchAuctionSummary'
+                  - $ref: '#/components/schemas/Cat'
+                  - $ref: '#/components/schemas/Dog'
                 discriminator:
-                  propertyName: auctionType
+                  propertyName: petType
                   mapping:
-                    english: '#/components/schemas/EnglishAuctionSummary'
-                    dutch: '#/components/schemas/DutchAuctionSummary'
-  /auctions:
+                    cat: '#/components/schemas/Cat'
+                    dog: '#/components/schemas/Dog'
+  /orders:
     get:
-      operationId: listAuctionNames
+      operationId: listOrderNumbers
       responses:
         '200':
           description: dates-free — must generate no deserializer
@@ -53,31 +53,31 @@ paths:
                 items: { type: string }
 components:
   schemas:
-    EnglishAuctionSummary:
+    Cat:
       type: object
-      required: [auctionType, startTime]
+      required: [petType, vaccinatedAt]
       properties:
-        auctionType: { type: string, enum: [english] }
-        startTime: { type: string, format: date-time }
-    DutchAuctionSummary:
+        petType: { type: string, enum: [cat] }
+        vaccinatedAt: { type: string, format: date-time }
+    Dog:
       type: object
-      required: [auctionType]
+      required: [petType]
       properties:
-        auctionType: { type: string, enum: [dutch] }
-        endTime: { type: string, format: date-time, nullable: true }
-    AuctionDetails:
+        petType: { type: string, enum: [dog] }
+        adoptedAt: { type: string, format: date-time, nullable: true }
+    OrderDetails:
       type: object
-      required: [startTime, log]
+      required: [placedAt, events]
       properties:
-        startTime: { type: string, format: date-time }
-        endTime: { type: string, format: date-time, nullable: true }
+        placedAt: { type: string, format: date-time }
+        deliveredAt: { type: string, format: date-time, nullable: true }
         lastViewedAt: { type: string, format: date-time }
         name: { type: string }
-        log:
+        events:
           type: array
           items:
-            $ref: '#/components/schemas/LogEvent'
-    LogEvent:
+            $ref: '#/components/schemas/OrderEvent'
+    OrderEvent:
       type: object
       required: [createdAt]
       properties:

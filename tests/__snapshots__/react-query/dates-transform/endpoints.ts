@@ -17,11 +17,7 @@ import type {
   UseQueryResult,
 } from '@tanstack/react-query';
 
-import type {
-  AuctionDetails,
-  DutchAuctionSummary,
-  EnglishAuctionSummary,
-} from './model';
+import type { Cat, Dog, OrderDetails } from './model';
 
 import { customInstance } from '../../../mutators/custom-instance';
 const withQueryKey = <T extends object, K>(
@@ -42,27 +38,27 @@ const withQueryKey = <T extends object, K>(
   return result;
 };
 
-export const getAuctionDetails = (auctionId: string, signal?: AbortSignal) => {
-  return customInstance<AuctionDetails>({
-    url: `/auctions/${auctionId}`,
+export const getOrderDetails = (orderId: string, signal?: AbortSignal) => {
+  return customInstance<OrderDetails>({
+    url: `/orders/${orderId}`,
     method: 'GET',
     signal,
-  }).then(deserializeGetAuctionDetailsResponse);
+  }).then(deserializeGetOrderDetailsResponse);
 };
 
-const deserializeGetAuctionDetailsResponse = (
-  data: AuctionDetails,
-): AuctionDetails => {
+const deserializeGetOrderDetailsResponse = (
+  data: OrderDetails,
+): OrderDetails => {
   if (data == null) return data;
-  data.startTime = new Date(data.startTime);
-  if (data.endTime != null) {
-    data.endTime = new Date(data.endTime);
+  data.placedAt = new Date(data.placedAt);
+  if (data.deliveredAt != null) {
+    data.deliveredAt = new Date(data.deliveredAt);
   }
   if (data.lastViewedAt != null) {
     data.lastViewedAt = new Date(data.lastViewedAt);
   }
-  for (let i0 = 0; i0 < data.log.length; i0++) {
-    const item0 = data.log[i0];
+  for (let i0 = 0; i0 < data.events.length; i0++) {
+    const item0 = data.events[i0];
     item0.createdAt = new Date(item0.createdAt);
     if (item0.resolvedAt != null) {
       item0.resolvedAt = new Date(item0.resolvedAt);
@@ -71,19 +67,19 @@ const deserializeGetAuctionDetailsResponse = (
   return data;
 };
 
-export const getGetAuctionDetailsQueryKey = (auctionId: string) => {
-  return [`/auctions/${auctionId}`] as const;
+export const getGetOrderDetailsQueryKey = (orderId: string) => {
+  return [`/orders/${orderId}`] as const;
 };
 
-export const getGetAuctionDetailsQueryOptions = <
-  TData = Awaited<ReturnType<typeof getAuctionDetails>>,
+export const getGetOrderDetailsQueryOptions = <
+  TData = Awaited<ReturnType<typeof getOrderDetails>>,
   TError = unknown,
 >(
-  auctionId: string,
+  orderId: string,
   options?: {
     query?: Partial<
       UseQueryOptions<
-        Awaited<ReturnType<typeof getAuctionDetails>>,
+        Awaited<ReturnType<typeof getOrderDetails>>,
         TError,
         TData
       >
@@ -93,47 +89,47 @@ export const getGetAuctionDetailsQueryOptions = <
   const { query: queryOptions } = options ?? {};
 
   const queryKey =
-    queryOptions?.queryKey ?? getGetAuctionDetailsQueryKey(auctionId);
+    queryOptions?.queryKey ?? getGetOrderDetailsQueryKey(orderId);
 
-  const queryFn: QueryFunction<
-    Awaited<ReturnType<typeof getAuctionDetails>>
-  > = ({ signal }) => getAuctionDetails(auctionId, signal);
+  const queryFn: QueryFunction<Awaited<ReturnType<typeof getOrderDetails>>> = ({
+    signal,
+  }) => getOrderDetails(orderId, signal);
 
   return {
     queryKey,
     queryFn,
-    enabled: auctionId !== null && auctionId !== undefined,
+    enabled: orderId !== null && orderId !== undefined,
     ...queryOptions,
   } as UseQueryOptions<
-    Awaited<ReturnType<typeof getAuctionDetails>>,
+    Awaited<ReturnType<typeof getOrderDetails>>,
     TError,
     TData
   > & { queryKey: DataTag<QueryKey, TData, TError> };
 };
 
-export type GetAuctionDetailsQueryResult = NonNullable<
-  Awaited<ReturnType<typeof getAuctionDetails>>
+export type GetOrderDetailsQueryResult = NonNullable<
+  Awaited<ReturnType<typeof getOrderDetails>>
 >;
-export type GetAuctionDetailsQueryError = unknown;
+export type GetOrderDetailsQueryError = unknown;
 
-export function useGetAuctionDetails<
-  TData = Awaited<ReturnType<typeof getAuctionDetails>>,
+export function useGetOrderDetails<
+  TData = Awaited<ReturnType<typeof getOrderDetails>>,
   TError = unknown,
 >(
-  auctionId: string,
+  orderId: string,
   options: {
     query: Partial<
       UseQueryOptions<
-        Awaited<ReturnType<typeof getAuctionDetails>>,
+        Awaited<ReturnType<typeof getOrderDetails>>,
         TError,
         TData
       >
     > &
       Pick<
         DefinedInitialDataOptions<
-          Awaited<ReturnType<typeof getAuctionDetails>>,
+          Awaited<ReturnType<typeof getOrderDetails>>,
           TError,
-          Awaited<ReturnType<typeof getAuctionDetails>>
+          Awaited<ReturnType<typeof getOrderDetails>>
         >,
         'initialData'
       >;
@@ -142,24 +138,24 @@ export function useGetAuctionDetails<
 ): DefinedUseQueryResult<TData, TError> & {
   queryKey: DataTag<QueryKey, TData, TError>;
 };
-export function useGetAuctionDetails<
-  TData = Awaited<ReturnType<typeof getAuctionDetails>>,
+export function useGetOrderDetails<
+  TData = Awaited<ReturnType<typeof getOrderDetails>>,
   TError = unknown,
 >(
-  auctionId: string,
+  orderId: string,
   options?: {
     query?: Partial<
       UseQueryOptions<
-        Awaited<ReturnType<typeof getAuctionDetails>>,
+        Awaited<ReturnType<typeof getOrderDetails>>,
         TError,
         TData
       >
     > &
       Pick<
         UndefinedInitialDataOptions<
-          Awaited<ReturnType<typeof getAuctionDetails>>,
+          Awaited<ReturnType<typeof getOrderDetails>>,
           TError,
-          Awaited<ReturnType<typeof getAuctionDetails>>
+          Awaited<ReturnType<typeof getOrderDetails>>
         >,
         'initialData'
       >;
@@ -168,15 +164,15 @@ export function useGetAuctionDetails<
 ): UseQueryResult<TData, TError> & {
   queryKey: DataTag<QueryKey, TData, TError>;
 };
-export function useGetAuctionDetails<
-  TData = Awaited<ReturnType<typeof getAuctionDetails>>,
+export function useGetOrderDetails<
+  TData = Awaited<ReturnType<typeof getOrderDetails>>,
   TError = unknown,
 >(
-  auctionId: string,
+  orderId: string,
   options?: {
     query?: Partial<
       UseQueryOptions<
-        Awaited<ReturnType<typeof getAuctionDetails>>,
+        Awaited<ReturnType<typeof getOrderDetails>>,
         TError,
         TData
       >
@@ -187,15 +183,15 @@ export function useGetAuctionDetails<
   queryKey: DataTag<QueryKey, TData, TError>;
 };
 
-export function useGetAuctionDetails<
-  TData = Awaited<ReturnType<typeof getAuctionDetails>>,
+export function useGetOrderDetails<
+  TData = Awaited<ReturnType<typeof getOrderDetails>>,
   TError = unknown,
 >(
-  auctionId: string,
+  orderId: string,
   options?: {
     query?: Partial<
       UseQueryOptions<
-        Awaited<ReturnType<typeof getAuctionDetails>>,
+        Awaited<ReturnType<typeof getOrderDetails>>,
         TError,
         TData
       >
@@ -205,7 +201,7 @@ export function useGetAuctionDetails<
 ): UseQueryResult<TData, TError> & {
   queryKey: DataTag<QueryKey, TData, TError>;
 } {
-  const queryOptions = getGetAuctionDetailsQueryOptions(auctionId, options);
+  const queryOptions = getGetOrderDetailsQueryOptions(orderId, options);
 
   const query = useQuery(queryOptions, queryClient) as UseQueryResult<
     TData,
@@ -215,26 +211,24 @@ export function useGetAuctionDetails<
   return withQueryKey(query, queryOptions.queryKey);
 }
 
-export const getAuctionSummary = (auctionId: string, signal?: AbortSignal) => {
-  return customInstance<EnglishAuctionSummary | DutchAuctionSummary>({
-    url: `/auctions/${auctionId}/summary`,
+export const getPetProfile = (petId: string, signal?: AbortSignal) => {
+  return customInstance<Cat | Dog>({
+    url: `/pets/${petId}`,
     method: 'GET',
     signal,
-  }).then(deserializeGetAuctionSummaryResponse);
+  }).then(deserializeGetPetProfileResponse);
 };
 
-const deserializeGetAuctionSummaryResponse = (
-  data: EnglishAuctionSummary | DutchAuctionSummary,
-): EnglishAuctionSummary | DutchAuctionSummary => {
+const deserializeGetPetProfileResponse = (data: Cat | Dog): Cat | Dog => {
   if (data == null) return data;
-  switch (data.auctionType) {
-    case 'english': {
-      data.startTime = new Date(data.startTime);
+  switch (data.petType) {
+    case 'cat': {
+      data.vaccinatedAt = new Date(data.vaccinatedAt);
       break;
     }
-    case 'dutch': {
-      if (data.endTime != null) {
-        data.endTime = new Date(data.endTime);
+    case 'dog': {
+      if (data.adoptedAt != null) {
+        data.adoptedAt = new Date(data.adoptedAt);
       }
       break;
     }
@@ -242,69 +236,60 @@ const deserializeGetAuctionSummaryResponse = (
   return data;
 };
 
-export const getGetAuctionSummaryQueryKey = (auctionId: string) => {
-  return [`/auctions/${auctionId}/summary`] as const;
+export const getGetPetProfileQueryKey = (petId: string) => {
+  return [`/pets/${petId}`] as const;
 };
 
-export const getGetAuctionSummaryQueryOptions = <
-  TData = Awaited<ReturnType<typeof getAuctionSummary>>,
+export const getGetPetProfileQueryOptions = <
+  TData = Awaited<ReturnType<typeof getPetProfile>>,
   TError = unknown,
 >(
-  auctionId: string,
+  petId: string,
   options?: {
     query?: Partial<
-      UseQueryOptions<
-        Awaited<ReturnType<typeof getAuctionSummary>>,
-        TError,
-        TData
-      >
+      UseQueryOptions<Awaited<ReturnType<typeof getPetProfile>>, TError, TData>
     >;
   },
 ) => {
   const { query: queryOptions } = options ?? {};
 
-  const queryKey =
-    queryOptions?.queryKey ?? getGetAuctionSummaryQueryKey(auctionId);
+  const queryKey = queryOptions?.queryKey ?? getGetPetProfileQueryKey(petId);
 
-  const queryFn: QueryFunction<
-    Awaited<ReturnType<typeof getAuctionSummary>>
-  > = ({ signal }) => getAuctionSummary(auctionId, signal);
+  const queryFn: QueryFunction<Awaited<ReturnType<typeof getPetProfile>>> = ({
+    signal,
+  }) => getPetProfile(petId, signal);
 
   return {
     queryKey,
     queryFn,
-    enabled: auctionId !== null && auctionId !== undefined,
+    enabled: petId !== null && petId !== undefined,
     ...queryOptions,
   } as UseQueryOptions<
-    Awaited<ReturnType<typeof getAuctionSummary>>,
+    Awaited<ReturnType<typeof getPetProfile>>,
     TError,
     TData
   > & { queryKey: DataTag<QueryKey, TData, TError> };
 };
 
-export type GetAuctionSummaryQueryResult = NonNullable<
-  Awaited<ReturnType<typeof getAuctionSummary>>
+export type GetPetProfileQueryResult = NonNullable<
+  Awaited<ReturnType<typeof getPetProfile>>
 >;
-export type GetAuctionSummaryQueryError = unknown;
+export type GetPetProfileQueryError = unknown;
 
-export function useGetAuctionSummary<
-  TData = Awaited<ReturnType<typeof getAuctionSummary>>,
+export function useGetPetProfile<
+  TData = Awaited<ReturnType<typeof getPetProfile>>,
   TError = unknown,
 >(
-  auctionId: string,
+  petId: string,
   options: {
     query: Partial<
-      UseQueryOptions<
-        Awaited<ReturnType<typeof getAuctionSummary>>,
-        TError,
-        TData
-      >
+      UseQueryOptions<Awaited<ReturnType<typeof getPetProfile>>, TError, TData>
     > &
       Pick<
         DefinedInitialDataOptions<
-          Awaited<ReturnType<typeof getAuctionSummary>>,
+          Awaited<ReturnType<typeof getPetProfile>>,
           TError,
-          Awaited<ReturnType<typeof getAuctionSummary>>
+          Awaited<ReturnType<typeof getPetProfile>>
         >,
         'initialData'
       >;
@@ -313,24 +298,20 @@ export function useGetAuctionSummary<
 ): DefinedUseQueryResult<TData, TError> & {
   queryKey: DataTag<QueryKey, TData, TError>;
 };
-export function useGetAuctionSummary<
-  TData = Awaited<ReturnType<typeof getAuctionSummary>>,
+export function useGetPetProfile<
+  TData = Awaited<ReturnType<typeof getPetProfile>>,
   TError = unknown,
 >(
-  auctionId: string,
+  petId: string,
   options?: {
     query?: Partial<
-      UseQueryOptions<
-        Awaited<ReturnType<typeof getAuctionSummary>>,
-        TError,
-        TData
-      >
+      UseQueryOptions<Awaited<ReturnType<typeof getPetProfile>>, TError, TData>
     > &
       Pick<
         UndefinedInitialDataOptions<
-          Awaited<ReturnType<typeof getAuctionSummary>>,
+          Awaited<ReturnType<typeof getPetProfile>>,
           TError,
-          Awaited<ReturnType<typeof getAuctionSummary>>
+          Awaited<ReturnType<typeof getPetProfile>>
         >,
         'initialData'
       >;
@@ -339,18 +320,14 @@ export function useGetAuctionSummary<
 ): UseQueryResult<TData, TError> & {
   queryKey: DataTag<QueryKey, TData, TError>;
 };
-export function useGetAuctionSummary<
-  TData = Awaited<ReturnType<typeof getAuctionSummary>>,
+export function useGetPetProfile<
+  TData = Awaited<ReturnType<typeof getPetProfile>>,
   TError = unknown,
 >(
-  auctionId: string,
+  petId: string,
   options?: {
     query?: Partial<
-      UseQueryOptions<
-        Awaited<ReturnType<typeof getAuctionSummary>>,
-        TError,
-        TData
-      >
+      UseQueryOptions<Awaited<ReturnType<typeof getPetProfile>>, TError, TData>
     >;
   },
   queryClient?: QueryClient,
@@ -358,25 +335,21 @@ export function useGetAuctionSummary<
   queryKey: DataTag<QueryKey, TData, TError>;
 };
 
-export function useGetAuctionSummary<
-  TData = Awaited<ReturnType<typeof getAuctionSummary>>,
+export function useGetPetProfile<
+  TData = Awaited<ReturnType<typeof getPetProfile>>,
   TError = unknown,
 >(
-  auctionId: string,
+  petId: string,
   options?: {
     query?: Partial<
-      UseQueryOptions<
-        Awaited<ReturnType<typeof getAuctionSummary>>,
-        TError,
-        TData
-      >
+      UseQueryOptions<Awaited<ReturnType<typeof getPetProfile>>, TError, TData>
     >;
   },
   queryClient?: QueryClient,
 ): UseQueryResult<TData, TError> & {
   queryKey: DataTag<QueryKey, TData, TError>;
 } {
-  const queryOptions = getGetAuctionSummaryQueryOptions(auctionId, options);
+  const queryOptions = getGetPetProfileQueryOptions(petId, options);
 
   const query = useQuery(queryOptions, queryClient) as UseQueryResult<
     TData,
@@ -386,59 +359,59 @@ export function useGetAuctionSummary<
   return withQueryKey(query, queryOptions.queryKey);
 }
 
-export const listAuctionNames = (signal?: AbortSignal) => {
-  return customInstance<string[]>({ url: `/auctions`, method: 'GET', signal });
+export const listOrderNumbers = (signal?: AbortSignal) => {
+  return customInstance<string[]>({ url: `/orders`, method: 'GET', signal });
 };
 
-export const getListAuctionNamesQueryKey = () => {
-  return [`/auctions`] as const;
+export const getListOrderNumbersQueryKey = () => {
+  return [`/orders`] as const;
 };
 
-export const getListAuctionNamesQueryOptions = <
-  TData = Awaited<ReturnType<typeof listAuctionNames>>,
+export const getListOrderNumbersQueryOptions = <
+  TData = Awaited<ReturnType<typeof listOrderNumbers>>,
   TError = unknown,
 >(options?: {
   query?: Partial<
-    UseQueryOptions<Awaited<ReturnType<typeof listAuctionNames>>, TError, TData>
+    UseQueryOptions<Awaited<ReturnType<typeof listOrderNumbers>>, TError, TData>
   >;
 }) => {
   const { query: queryOptions } = options ?? {};
 
-  const queryKey = queryOptions?.queryKey ?? getListAuctionNamesQueryKey();
+  const queryKey = queryOptions?.queryKey ?? getListOrderNumbersQueryKey();
 
   const queryFn: QueryFunction<
-    Awaited<ReturnType<typeof listAuctionNames>>
-  > = ({ signal }) => listAuctionNames(signal);
+    Awaited<ReturnType<typeof listOrderNumbers>>
+  > = ({ signal }) => listOrderNumbers(signal);
 
   return { queryKey, queryFn, ...queryOptions } as UseQueryOptions<
-    Awaited<ReturnType<typeof listAuctionNames>>,
+    Awaited<ReturnType<typeof listOrderNumbers>>,
     TError,
     TData
   > & { queryKey: DataTag<QueryKey, TData, TError> };
 };
 
-export type ListAuctionNamesQueryResult = NonNullable<
-  Awaited<ReturnType<typeof listAuctionNames>>
+export type ListOrderNumbersQueryResult = NonNullable<
+  Awaited<ReturnType<typeof listOrderNumbers>>
 >;
-export type ListAuctionNamesQueryError = unknown;
+export type ListOrderNumbersQueryError = unknown;
 
-export function useListAuctionNames<
-  TData = Awaited<ReturnType<typeof listAuctionNames>>,
+export function useListOrderNumbers<
+  TData = Awaited<ReturnType<typeof listOrderNumbers>>,
   TError = unknown,
 >(
   options: {
     query: Partial<
       UseQueryOptions<
-        Awaited<ReturnType<typeof listAuctionNames>>,
+        Awaited<ReturnType<typeof listOrderNumbers>>,
         TError,
         TData
       >
     > &
       Pick<
         DefinedInitialDataOptions<
-          Awaited<ReturnType<typeof listAuctionNames>>,
+          Awaited<ReturnType<typeof listOrderNumbers>>,
           TError,
-          Awaited<ReturnType<typeof listAuctionNames>>
+          Awaited<ReturnType<typeof listOrderNumbers>>
         >,
         'initialData'
       >;
@@ -447,23 +420,23 @@ export function useListAuctionNames<
 ): DefinedUseQueryResult<TData, TError> & {
   queryKey: DataTag<QueryKey, TData, TError>;
 };
-export function useListAuctionNames<
-  TData = Awaited<ReturnType<typeof listAuctionNames>>,
+export function useListOrderNumbers<
+  TData = Awaited<ReturnType<typeof listOrderNumbers>>,
   TError = unknown,
 >(
   options?: {
     query?: Partial<
       UseQueryOptions<
-        Awaited<ReturnType<typeof listAuctionNames>>,
+        Awaited<ReturnType<typeof listOrderNumbers>>,
         TError,
         TData
       >
     > &
       Pick<
         UndefinedInitialDataOptions<
-          Awaited<ReturnType<typeof listAuctionNames>>,
+          Awaited<ReturnType<typeof listOrderNumbers>>,
           TError,
-          Awaited<ReturnType<typeof listAuctionNames>>
+          Awaited<ReturnType<typeof listOrderNumbers>>
         >,
         'initialData'
       >;
@@ -472,14 +445,14 @@ export function useListAuctionNames<
 ): UseQueryResult<TData, TError> & {
   queryKey: DataTag<QueryKey, TData, TError>;
 };
-export function useListAuctionNames<
-  TData = Awaited<ReturnType<typeof listAuctionNames>>,
+export function useListOrderNumbers<
+  TData = Awaited<ReturnType<typeof listOrderNumbers>>,
   TError = unknown,
 >(
   options?: {
     query?: Partial<
       UseQueryOptions<
-        Awaited<ReturnType<typeof listAuctionNames>>,
+        Awaited<ReturnType<typeof listOrderNumbers>>,
         TError,
         TData
       >
@@ -490,14 +463,14 @@ export function useListAuctionNames<
   queryKey: DataTag<QueryKey, TData, TError>;
 };
 
-export function useListAuctionNames<
-  TData = Awaited<ReturnType<typeof listAuctionNames>>,
+export function useListOrderNumbers<
+  TData = Awaited<ReturnType<typeof listOrderNumbers>>,
   TError = unknown,
 >(
   options?: {
     query?: Partial<
       UseQueryOptions<
-        Awaited<ReturnType<typeof listAuctionNames>>,
+        Awaited<ReturnType<typeof listOrderNumbers>>,
         TError,
         TData
       >
@@ -507,7 +480,7 @@ export function useListAuctionNames<
 ): UseQueryResult<TData, TError> & {
   queryKey: DataTag<QueryKey, TData, TError>;
 } {
-  const queryOptions = getListAuctionNamesQueryOptions(options);
+  const queryOptions = getListOrderNumbersQueryOptions(options);
 
   const query = useQuery(queryOptions, queryClient) as UseQueryResult<
     TData,

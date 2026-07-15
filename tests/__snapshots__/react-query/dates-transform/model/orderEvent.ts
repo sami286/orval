@@ -5,7 +5,7 @@
  * OpenAPI spec version: 1.0.0
  */
 
-export interface LogEvent {
+export interface OrderEvent {
   createdAt: Date;
   resolvedAt?: Date;
   message?: string;

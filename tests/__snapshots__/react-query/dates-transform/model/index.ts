@@ -5,9 +5,9 @@
  * OpenAPI spec version: 1.0.0
  */
 
-export * from './auctionDetails';
-export * from './dutchAuctionSummary';
-export * from './dutchAuctionSummaryAuctionType';
-export * from './englishAuctionSummary';
-export * from './englishAuctionSummaryAuctionType';
-export * from './logEvent';
+export * from './cat';
+export * from './catPetType';
+export * from './dog';
+export * from './dogPetType';
+export * from './orderDetails';
+export * from './orderEvent';

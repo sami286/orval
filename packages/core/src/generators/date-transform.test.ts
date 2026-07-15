@@ -302,17 +302,17 @@ describe('buildDateTransformStatements', () => {
 describe('buildDateTransformStatements — discriminated unions', () => {
   const makeUnionContext = () =>
     makeContext({
-      EnglishDetails: {
+      Cat: {
         type: 'object',
-        required: ['startTime'],
+        required: ['vaccinatedAt'],
         properties: {
-          startTime: { type: 'string', format: 'date-time' },
+          vaccinatedAt: { type: 'string', format: 'date-time' },
         },
       },
-      DutchDetails: {
+      Dog: {
         type: 'object',
         properties: {
-          endTime: { type: 'string', format: 'date-time', nullable: true },
+          adoptedAt: { type: 'string', format: 'date-time', nullable: true },
         },
       },
     });
@@ -321,14 +321,14 @@ describe('buildDateTransformStatements — discriminated unions', () => {
     const context = makeUnionContext();
     const schema: OpenApiSchemaObject = {
       oneOf: [
-        { $ref: '#/components/schemas/EnglishDetails' },
-        { $ref: '#/components/schemas/DutchDetails' },
+        { $ref: '#/components/schemas/Cat' },
+        { $ref: '#/components/schemas/Dog' },
       ],
       discriminator: {
-        propertyName: 'auctionType',
+        propertyName: 'petType',
         mapping: {
-          reverse_english_auction: '#/components/schemas/EnglishDetails',
-          dutch_auction: '#/components/schemas/DutchDetails',
+          cat: '#/components/schemas/Cat',
+          dog: '#/components/schemas/Dog',
         },
       },
     };
@@ -341,14 +341,14 @@ describe('buildDateTransformStatements — discriminated unions', () => {
 
     expect(statements.join('\n')).toBe(
       [
-        'switch (data.auctionType) {',
-        "  case 'reverse_english_auction': {",
-        '    data.startTime = new Date(data.startTime);',
+        'switch (data.petType) {',
+        "  case 'cat': {",
+        '    data.vaccinatedAt = new Date(data.vaccinatedAt);',
         '    break;',
         '  }',
-        "  case 'dutch_auction': {",
-        '    if (data.endTime != null) {',
-        '      data.endTime = new Date(data.endTime);',
+        "  case 'dog': {",
+        '    if (data.adoptedAt != null) {',
+        '      data.adoptedAt = new Date(data.adoptedAt);',
         '    }',
         '    break;',
         '  }',
@@ -360,12 +360,12 @@ describe('buildDateTransformStatements — discriminated unions', () => {
   it('emits identical case bodies when two mapping keys point at the same ref', () => {
     const context = makeUnionContext();
     const schema: OpenApiSchemaObject = {
-      oneOf: [{ $ref: '#/components/schemas/DutchDetails' }],
+      oneOf: [{ $ref: '#/components/schemas/Dog' }],
       discriminator: {
-        propertyName: 'auctionType',
+        propertyName: 'petType',
         mapping: {
-          dutch_auction: '#/components/schemas/DutchDetails',
-          japanese_auction: '#/components/schemas/DutchDetails',
+          dog: '#/components/schemas/Dog',
+          puppy: '#/components/schemas/Dog',
         },
       },
     };
@@ -378,16 +378,16 @@ describe('buildDateTransformStatements — discriminated unions', () => {
 
     expect(statements.join('\n')).toBe(
       [
-        'switch (data.auctionType) {',
-        "  case 'dutch_auction': {",
-        '    if (data.endTime != null) {',
-        '      data.endTime = new Date(data.endTime);',
+        'switch (data.petType) {',
+        "  case 'dog': {",
+        '    if (data.adoptedAt != null) {',
+        '      data.adoptedAt = new Date(data.adoptedAt);',
         '    }',
         '    break;',
         '  }',
-        "  case 'japanese_auction': {",
-        '    if (data.endTime != null) {',
-        '      data.endTime = new Date(data.endTime);',
+        "  case 'puppy': {",
+        '    if (data.adoptedAt != null) {',
+        '      data.adoptedAt = new Date(data.adoptedAt);',
         '    }',
         '    break;',
         '  }',
@@ -398,11 +398,11 @@ describe('buildDateTransformStatements — discriminated unions', () => {
 
   it('omits a case for a mapping key whose variant has no dates', () => {
     const context = makeContext({
-      EnglishDetails: {
+      Cat: {
         type: 'object',
-        required: ['startTime'],
+        required: ['vaccinatedAt'],
         properties: {
-          startTime: { type: 'string', format: 'date-time' },
+          vaccinatedAt: { type: 'string', format: 'date-time' },
         },
       },
       DateFree: {
@@ -412,13 +412,13 @@ describe('buildDateTransformStatements — discriminated unions', () => {
     });
     const schema: OpenApiSchemaObject = {
       oneOf: [
-        { $ref: '#/components/schemas/EnglishDetails' },
+        { $ref: '#/components/schemas/Cat' },
         { $ref: '#/components/schemas/DateFree' },
       ],
       discriminator: {
-        propertyName: 'auctionType',
+        propertyName: 'petType',
         mapping: {
-          reverse_english_auction: '#/components/schemas/EnglishDetails',
+          cat: '#/components/schemas/Cat',
           date_free: '#/components/schemas/DateFree',
         },
       },
@@ -432,9 +432,9 @@ describe('buildDateTransformStatements — discriminated unions', () => {
 
     expect(statements.join('\n')).toBe(
       [
-        'switch (data.auctionType) {',
-        "  case 'reverse_english_auction': {",
-        '    data.startTime = new Date(data.startTime);',
+        'switch (data.petType) {',
+        "  case 'cat': {",
+        '    data.vaccinatedAt = new Date(data.vaccinatedAt);',
         '    break;',
         '  }',
         '}',
@@ -475,9 +475,9 @@ describe('buildDateTransformStatements — discriminated unions', () => {
   it('returns [] for oneOf with a discriminator but no mapping', () => {
     const context = makeUnionContext();
     const schema: OpenApiSchemaObject = {
-      oneOf: [{ $ref: '#/components/schemas/EnglishDetails' }],
+      oneOf: [{ $ref: '#/components/schemas/Cat' }],
       discriminator: {
-        propertyName: 'auctionType',
+        propertyName: 'petType',
       },
     };
 
@@ -493,14 +493,14 @@ describe('buildDateTransformStatements — discriminated unions', () => {
       properties: {
         details: {
           oneOf: [
-            { $ref: '#/components/schemas/EnglishDetails' },
-            { $ref: '#/components/schemas/DutchDetails' },
+            { $ref: '#/components/schemas/Cat' },
+            { $ref: '#/components/schemas/Dog' },
           ],
           discriminator: {
-            propertyName: 'auctionType',
+            propertyName: 'petType',
             mapping: {
-              reverse_english_auction: '#/components/schemas/EnglishDetails',
-              dutch_auction: '#/components/schemas/DutchDetails',
+              cat: '#/components/schemas/Cat',
+              dog: '#/components/schemas/Dog',
             },
           },
         },
@@ -516,14 +516,14 @@ describe('buildDateTransformStatements — discriminated unions', () => {
     expect(statements.join('\n')).toBe(
       [
         'if (data.details != null) {',
-        '  switch (data.details.auctionType) {',
-        "    case 'reverse_english_auction': {",
-        '      data.details.startTime = new Date(data.details.startTime);',
+        '  switch (data.details.petType) {',
+        "    case 'cat': {",
+        '      data.details.vaccinatedAt = new Date(data.details.vaccinatedAt);',
         '      break;',
         '    }',
-        "    case 'dutch_auction': {",
-        '      if (data.details.endTime != null) {',
-        '        data.details.endTime = new Date(data.details.endTime);',
+        "    case 'dog': {",
+        '      if (data.details.adoptedAt != null) {',
+        '        data.details.adoptedAt = new Date(data.details.adoptedAt);',
         '      }',
         '      break;',
         '    }',
@@ -539,14 +539,14 @@ describe('buildDateTransformStatements — discriminated unions', () => {
       type: 'array',
       items: {
         oneOf: [
-          { $ref: '#/components/schemas/EnglishDetails' },
-          { $ref: '#/components/schemas/DutchDetails' },
+          { $ref: '#/components/schemas/Cat' },
+          { $ref: '#/components/schemas/Dog' },
         ],
         discriminator: {
-          propertyName: 'auctionType',
+          propertyName: 'petType',
           mapping: {
-            reverse_english_auction: '#/components/schemas/EnglishDetails',
-            dutch_auction: '#/components/schemas/DutchDetails',
+            cat: '#/components/schemas/Cat',
+            dog: '#/components/schemas/Dog',
           },
         },
       } as OpenApiSchemaObject,
@@ -562,14 +562,14 @@ describe('buildDateTransformStatements — discriminated unions', () => {
       [
         'for (let i0 = 0; i0 < data.length; i0++) {',
         '  const item0 = data[i0];',
-        '  switch (item0.auctionType) {',
-        "    case 'reverse_english_auction': {",
-        '      item0.startTime = new Date(item0.startTime);',
+        '  switch (item0.petType) {',
+        "    case 'cat': {",
+        '      item0.vaccinatedAt = new Date(item0.vaccinatedAt);',
         '      break;',
         '    }',
-        "    case 'dutch_auction': {",
-        '      if (item0.endTime != null) {',
-        '        item0.endTime = new Date(item0.endTime);',
+        "    case 'dog': {",
+        '      if (item0.adoptedAt != null) {',
+        '        item0.adoptedAt = new Date(item0.adoptedAt);',
         '      }',
         '      break;',
         '    }',
@@ -639,44 +639,44 @@ describe('generateResponseDateDeserializer', () => {
 
   it('generates a deserializer with a discriminator switch for a discriminated-union response', () => {
     const context = makeContext({
-      EnglishDetails: {
+      Cat: {
         type: 'object',
-        required: ['startTime'],
+        required: ['vaccinatedAt'],
         properties: {
-          startTime: { type: 'string', format: 'date-time' },
+          vaccinatedAt: { type: 'string', format: 'date-time' },
         },
       },
-      DutchDetails: {
+      Dog: {
         type: 'object',
         properties: {
-          endTime: { type: 'string', format: 'date-time', nullable: true },
+          adoptedAt: { type: 'string', format: 'date-time', nullable: true },
         },
       },
     });
     const unionSchema: OpenApiSchemaObject = {
       oneOf: [
-        { $ref: '#/components/schemas/EnglishDetails' },
-        { $ref: '#/components/schemas/DutchDetails' },
+        { $ref: '#/components/schemas/Cat' },
+        { $ref: '#/components/schemas/Dog' },
       ],
       discriminator: {
-        propertyName: 'auctionType',
+        propertyName: 'petType',
         mapping: {
-          reverse_english_auction: '#/components/schemas/EnglishDetails',
-          dutch_auction: '#/components/schemas/DutchDetails',
+          cat: '#/components/schemas/Cat',
+          dog: '#/components/schemas/Dog',
         },
       },
     };
 
     const result = generateResponseDateDeserializer({
-      operationName: 'getAuctionSummary',
+      operationName: 'getPetProfile',
       response: makeResponse({
         successTypes: [{ originalSchema: unionSchema }],
       }),
       context,
     });
 
-    expect(result?.name).toBe('deserializeGetAuctionSummaryResponse');
-    expect(result?.implementation).toContain('switch (data.auctionType) {');
+    expect(result?.name).toBe('deserializeGetPetProfileResponse');
+    expect(result?.implementation).toContain('switch (data.petType) {');
   });
 
   it('generates a deserializer for an uppercase JSON content type', () => {
