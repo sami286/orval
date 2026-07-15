@@ -1,0 +1,37 @@
+tests/__snapshots__/react-query/dates-transform/endpoints.ts
+  s_f1adf68a0204aa::t_237ee8d3e5a1a3 1-491
+tests/__snapshots__/react-query/dates-transform/model/cat.ts
+  s_f1adf68a0204aa::t_a455a9530b0126 1-12
+tests/__snapshots__/react-query/dates-transform/model/catPetType.ts
+  s_f1adf68a0204aa::t_8dcfb5dc5aa285 1-12
+tests/__snapshots__/react-query/dates-transform/model/dog.ts
+  s_f1adf68a0204aa::t_ca105e4d5f30e2 1-13
+tests/__snapshots__/react-query/dates-transform/model/dogPetType.ts
+  s_f1adf68a0204aa::t_6470f9cb5a8dc8 1-12
+tests/__snapshots__/react-query/dates-transform/model/index.ts
+  s_f1adf68a0204aa::t_3280e7573bda71 1-13
+tests/__snapshots__/react-query/dates-transform/model/orderDetails.ts
+  s_f1adf68a0204aa::t_83d8ef26b5b60c 1-16
+tests/__snapshots__/react-query/dates-transform/model/orderEvent.ts
+  s_f1adf68a0204aa::t_d8a6d7812fd792 1-12
+tests/configs/react-query.config.ts
+  s_f1adf68a0204aa::t_4cd2288d3ebadf 1633-1652
+tests/specifications/dates-transform.yaml
+  s_f1adf68a0204aa::t_34c85c87517162 1-86
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.14",
+  "base_commit_sha": "2c56fd3482b237a039967a03539f07b172442048",
+  "prompts": {},
+  "sessions": {
+    "s_f1adf68a0204aa": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "194fbe34-7185-4fba-a726-b25dcf958f5e",
+        "model": "claude-fable-5"
+      },
+      "human_author": "Samu <samuel.requena@archlet.ch>"
+    }
+  }
+}
