@@ -43,6 +43,14 @@ const propertyAccessor = (parent: string, key: string): string =>
 const indent = (statements: string[]): string[] =>
   statements.map((statement) => `  ${statement}`);
 
+// A discriminator mapping key is emitted as a single-quoted string literal
+// unless it contains a quote or backslash, in which case JSON.stringify
+// (double quotes) is used instead — still valid, unambiguous JS.
+const SAFE_CASE_LABEL_REGEX = /^[^'\\]*$/;
+
+const caseLabel = (key: string): string =>
+  SAFE_CASE_LABEL_REGEX.test(key) ? `'${key}'` : JSON.stringify(key);
+
 export interface BuildDateTransformParams {
   schema: SchemaOrRef;
   /** Expression the statements mutate in place, e.g. `data.log` */
@@ -86,6 +94,14 @@ export const buildDateTransformStatements = ({
         )
       : [];
 
+    const unionStatements = buildDiscriminatedUnionStatements({
+      schema,
+      accessor,
+      context,
+      visitedRefs,
+      depth,
+    });
+
     const itemsStatements = schema.items
       ? buildItemsStatements({
           items: schema.items,
@@ -107,7 +123,12 @@ export const buildDateTransformStatements = ({
         })
       : [];
 
-    result = [...allOfStatements, ...itemsStatements, ...propertiesStatements];
+    result = [
+      ...allOfStatements,
+      ...unionStatements,
+      ...itemsStatements,
+      ...propertiesStatements,
+    ];
   }
 
   if (ref) {
@@ -179,6 +200,58 @@ const buildPropertiesStatements = ({
 
     return [`if (${target} != null) {`, ...indent(statements), '}'];
   });
+};
+
+/**
+ * Emits a `switch` on the discriminator property for a `oneOf`/`anyOf` that
+ * carries an OpenAPI `discriminator` with an explicit `mapping`. Unions
+ * without a discriminator mapping are a documented limitation and
+ * contribute nothing — the variant a given payload matches can't be
+ * determined statically, so there's no accessor to guard.
+ */
+const buildDiscriminatedUnionStatements = ({
+  schema,
+  accessor,
+  context,
+  visitedRefs,
+  depth,
+}: {
+  schema: OpenApiSchemaObject;
+  accessor: string;
+  context: ContextSpec;
+  visitedRefs: Set<string>;
+  depth: number;
+}): string[] => {
+  const variants = schema.oneOf ?? schema.anyOf;
+  const propertyName = schema.discriminator?.propertyName;
+  const mapping = schema.discriminator?.mapping;
+  if (!variants || !propertyName || !mapping) return [];
+
+  const cases = Object.entries(mapping).flatMap(([value, refPath]) => {
+    const statements = buildDateTransformStatements({
+      schema: { $ref: refPath } as OpenApiReferenceObject,
+      accessor,
+      context,
+      visitedRefs,
+      depth,
+    });
+    if (statements.length === 0) return [];
+
+    return [
+      `case ${caseLabel(value)}: {`,
+      ...indent(statements),
+      '  break;',
+      '}',
+    ];
+  });
+
+  if (cases.length === 0) return [];
+
+  return [
+    `switch (${propertyAccessor(accessor, propertyName)}) {`,
+    ...indent(cases),
+    '}',
+  ];
 };
 
 export interface GeneratedDateDeserializer {

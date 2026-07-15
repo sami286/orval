@@ -3061,10 +3061,15 @@ no pattern matching on strings — and operations without date fields generate
 no extra code. Setting `useDatesTransform: true` implies `useDates: true`.
 This removes the need for the axios interceptor shown under `useDates`.
 
-Current limitations: dates inside `oneOf`/`anyOf` variants and
-`additionalProperties` maps are not converted, responses with multiple
-success shapes are skipped, and only the axios-based clients are wired
-(`react-query`, `vue-query`, `svelte-query` with `httpClient: 'axios'`).
+Current limitations: a `oneOf`/`anyOf` without an OpenAPI
+[`discriminator`](https://spec.openapis.org/oas/v3.1.0#discriminator-object)
+`mapping` is skipped, since there's no static way to tell which variant a
+given payload matched; a discriminated union with an explicit `mapping` is
+converted, emitting a `switch` on the discriminator property with one `case`
+per mapping key. `additionalProperties` maps are not converted, responses
+with multiple success shapes are skipped, and only the axios-based clients
+are wired (`react-query`, `vue-query`, `svelte-query` with
+`httpClient: 'axios'`).
 
 ### useBigInt
 

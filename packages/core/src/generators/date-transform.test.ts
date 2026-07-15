@@ -220,6 +220,241 @@ describe('buildDateTransformStatements', () => {
   });
 });
 
+describe('buildDateTransformStatements — discriminated unions', () => {
+  const makeUnionContext = () =>
+    makeContext({
+      EnglishDetails: {
+        type: 'object',
+        required: ['startTime'],
+        properties: {
+          startTime: { type: 'string', format: 'date-time' },
+        },
+      },
+      DutchDetails: {
+        type: 'object',
+        properties: {
+          endTime: { type: 'string', format: 'date-time', nullable: true },
+        },
+      },
+    });
+
+  it('emits a switch with one case per mapping key, in mapping order', () => {
+    const context = makeUnionContext();
+    const schema: OpenApiSchemaObject = {
+      oneOf: [
+        { $ref: '#/components/schemas/EnglishDetails' },
+        { $ref: '#/components/schemas/DutchDetails' },
+      ],
+      discriminator: {
+        propertyName: 'auctionType',
+        mapping: {
+          reverse_english_auction: '#/components/schemas/EnglishDetails',
+          dutch_auction: '#/components/schemas/DutchDetails',
+        },
+      },
+    };
+
+    const statements = buildDateTransformStatements({
+      schema,
+      accessor: 'data',
+      context,
+    });
+
+    expect(statements.join('\n')).toBe(
+      [
+        'switch (data.auctionType) {',
+        "  case 'reverse_english_auction': {",
+        '    data.startTime = new Date(data.startTime);',
+        '    break;',
+        '  }',
+        "  case 'dutch_auction': {",
+        '    if (data.endTime != null) {',
+        '      data.endTime = new Date(data.endTime);',
+        '    }',
+        '    break;',
+        '  }',
+        '}',
+      ].join('\n'),
+    );
+  });
+
+  it('emits identical case bodies when two mapping keys point at the same ref', () => {
+    const context = makeUnionContext();
+    const schema: OpenApiSchemaObject = {
+      oneOf: [{ $ref: '#/components/schemas/DutchDetails' }],
+      discriminator: {
+        propertyName: 'auctionType',
+        mapping: {
+          dutch_auction: '#/components/schemas/DutchDetails',
+          japanese_auction: '#/components/schemas/DutchDetails',
+        },
+      },
+    };
+
+    const statements = buildDateTransformStatements({
+      schema,
+      accessor: 'data',
+      context,
+    });
+
+    expect(statements.join('\n')).toBe(
+      [
+        'switch (data.auctionType) {',
+        "  case 'dutch_auction': {",
+        '    if (data.endTime != null) {',
+        '      data.endTime = new Date(data.endTime);',
+        '    }',
+        '    break;',
+        '  }',
+        "  case 'japanese_auction': {",
+        '    if (data.endTime != null) {',
+        '      data.endTime = new Date(data.endTime);',
+        '    }',
+        '    break;',
+        '  }',
+        '}',
+      ].join('\n'),
+    );
+  });
+
+  it('omits a case for a mapping key whose variant has no dates', () => {
+    const context = makeContext({
+      EnglishDetails: {
+        type: 'object',
+        required: ['startTime'],
+        properties: {
+          startTime: { type: 'string', format: 'date-time' },
+        },
+      },
+      DateFree: {
+        type: 'object',
+        properties: { name: { type: 'string' } },
+      },
+    });
+    const schema: OpenApiSchemaObject = {
+      oneOf: [
+        { $ref: '#/components/schemas/EnglishDetails' },
+        { $ref: '#/components/schemas/DateFree' },
+      ],
+      discriminator: {
+        propertyName: 'auctionType',
+        mapping: {
+          reverse_english_auction: '#/components/schemas/EnglishDetails',
+          date_free: '#/components/schemas/DateFree',
+        },
+      },
+    };
+
+    const statements = buildDateTransformStatements({
+      schema,
+      accessor: 'data',
+      context,
+    });
+
+    expect(statements.join('\n')).toBe(
+      [
+        'switch (data.auctionType) {',
+        "  case 'reverse_english_auction': {",
+        '    data.startTime = new Date(data.startTime);',
+        '    break;',
+        '  }',
+        '}',
+      ].join('\n'),
+    );
+  });
+
+  it('returns [] when every mapped variant is date-free', () => {
+    const context = makeContext({
+      DateFreeA: {
+        type: 'object',
+        properties: { name: { type: 'string' } },
+      },
+      DateFreeB: {
+        type: 'object',
+        properties: { label: { type: 'string' } },
+      },
+    });
+    const schema: OpenApiSchemaObject = {
+      oneOf: [
+        { $ref: '#/components/schemas/DateFreeA' },
+        { $ref: '#/components/schemas/DateFreeB' },
+      ],
+      discriminator: {
+        propertyName: 'kind',
+        mapping: {
+          a: '#/components/schemas/DateFreeA',
+          b: '#/components/schemas/DateFreeB',
+        },
+      },
+    };
+
+    expect(
+      buildDateTransformStatements({ schema, accessor: 'data', context }),
+    ).toEqual([]);
+  });
+
+  it('returns [] for oneOf with a discriminator but no mapping', () => {
+    const context = makeUnionContext();
+    const schema: OpenApiSchemaObject = {
+      oneOf: [{ $ref: '#/components/schemas/EnglishDetails' }],
+      discriminator: {
+        propertyName: 'auctionType',
+      },
+    };
+
+    expect(
+      buildDateTransformStatements({ schema, accessor: 'data', context }),
+    ).toEqual([]);
+  });
+
+  it('wraps a discriminated union nested under an optional property in the property guard', () => {
+    const context = makeUnionContext();
+    const schema: OpenApiSchemaObject = {
+      type: 'object',
+      properties: {
+        details: {
+          oneOf: [
+            { $ref: '#/components/schemas/EnglishDetails' },
+            { $ref: '#/components/schemas/DutchDetails' },
+          ],
+          discriminator: {
+            propertyName: 'auctionType',
+            mapping: {
+              reverse_english_auction: '#/components/schemas/EnglishDetails',
+              dutch_auction: '#/components/schemas/DutchDetails',
+            },
+          },
+        },
+      },
+    };
+
+    const statements = buildDateTransformStatements({
+      schema,
+      accessor: 'data',
+      context,
+    });
+
+    expect(statements.join('\n')).toBe(
+      [
+        'if (data.details != null) {',
+        '  switch (data.details.auctionType) {',
+        "    case 'reverse_english_auction': {",
+        '      data.details.startTime = new Date(data.details.startTime);',
+        '      break;',
+        '    }',
+        "    case 'dutch_auction': {",
+        '      if (data.details.endTime != null) {',
+        '        data.details.endTime = new Date(data.details.endTime);',
+        '      }',
+        '      break;',
+        '    }',
+        '  }',
+        '}',
+      ].join('\n'),
+    );
+  });
+});
+
 const makeResponse = (
   overrides: Partial<GetterResponse> & {
     successTypes?: Array<Partial<GetterResponse['types']['success'][number]>>;
@@ -275,6 +510,48 @@ describe('generateResponseDateDeserializer', () => {
 };
 `,
     );
+  });
+
+  it('generates a deserializer with a discriminator switch for a discriminated-union response', () => {
+    const context = makeContext({
+      EnglishDetails: {
+        type: 'object',
+        required: ['startTime'],
+        properties: {
+          startTime: { type: 'string', format: 'date-time' },
+        },
+      },
+      DutchDetails: {
+        type: 'object',
+        properties: {
+          endTime: { type: 'string', format: 'date-time', nullable: true },
+        },
+      },
+    });
+    const unionSchema: OpenApiSchemaObject = {
+      oneOf: [
+        { $ref: '#/components/schemas/EnglishDetails' },
+        { $ref: '#/components/schemas/DutchDetails' },
+      ],
+      discriminator: {
+        propertyName: 'auctionType',
+        mapping: {
+          reverse_english_auction: '#/components/schemas/EnglishDetails',
+          dutch_auction: '#/components/schemas/DutchDetails',
+        },
+      },
+    };
+
+    const result = generateResponseDateDeserializer({
+      operationName: 'getAuctionSummary',
+      response: makeResponse({
+        successTypes: [{ originalSchema: unionSchema }],
+      }),
+      context,
+    });
+
+    expect(result?.name).toBe('deserializeGetAuctionSummaryResponse');
+    expect(result?.implementation).toContain('switch (data.auctionType) {');
   });
 
   it('generates a deserializer for an uppercase JSON content type', () => {
