@@ -1,0 +1,21 @@
+packages/query/src/client.test.ts
+  s_f1adf68a0204aa::t_608a54d3cc78c4 1-8,12,14,605-821
+packages/query/src/client.ts
+  s_f1adf68a0204aa::t_15b35f24fa790e 7,324-338,381,393,405,407,446-450,452
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.14",
+  "base_commit_sha": "15ee2a22dcb84e5a21673e6b640d0382b5bea534",
+  "prompts": {},
+  "sessions": {
+    "s_f1adf68a0204aa": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "194fbe34-7185-4fba-a726-b25dcf958f5e",
+        "model": "claude-fable-5"
+      },
+      "human_author": "Samu <samuel.requena@archlet.ch>"
+    }
+  }
+}
