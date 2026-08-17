@@ -1,0 +1,47 @@
+tests/configs/react-query.config.ts
+  s_b4a28f02a9404f::t_9d4cff8e88331f 1723-1742
+tests/specifications/dates-transform.yaml
+  s_b4a28f02a9404f::t_9d4cff8e88331f 43-79,124-157
+tests/specifications/dates-transform-3-1.yaml
+  s_b4a28f02a9404f::t_c63b3ac4b54f35 1-42
+tests/__snapshots__/react-query/dates-transform-3-1/endpoints.ts
+  s_b4a28f02a9404f::t_98cece4945aedd 1-208
+tests/__snapshots__/react-query/dates-transform-3-1/model/audit.ts
+  s_b4a28f02a9404f::t_291c32c3b34092 1-10
+tests/__snapshots__/react-query/dates-transform-3-1/model/index.ts
+  s_b4a28f02a9404f::t_6193a1370ecc3b 1-9
+tests/__snapshots__/react-query/dates-transform-3-1/model/subscription.ts
+  s_b4a28f02a9404f::t_23cba784dd5a7c 1-13
+tests/__snapshots__/react-query/dates-transform/endpoints.ts
+  s_b4a28f02a9404f::t_7c7b753a8a5775 2,20,362-680
+tests/__snapshots__/react-query/dates-transform/model/cat.ts
+  s_b4a28f02a9404f::t_9cad4297bcec17 2
+tests/__snapshots__/react-query/dates-transform/model/catPetType.ts
+  s_b4a28f02a9404f::t_151466eb1d775a 2
+tests/__snapshots__/react-query/dates-transform/model/dog.ts
+  s_b4a28f02a9404f::t_0535fa26ac2acf 2
+tests/__snapshots__/react-query/dates-transform/model/dogPetType.ts
+  s_b4a28f02a9404f::t_c4506c31180623 2
+tests/__snapshots__/react-query/dates-transform/model/index.ts
+  s_b4a28f02a9404f::t_2567f211871816 2,8-10
+tests/__snapshots__/react-query/dates-transform/model/orderDetails.ts
+  s_b4a28f02a9404f::t_4b55d18bf02e28 2
+tests/__snapshots__/react-query/dates-transform/model/orderEvent.ts
+  s_b4a28f02a9404f::t_b7a717a11612b7 2
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.22",
+  "base_commit_sha": "aea3602ebe9553008d846e5ed2c10314cf66711d",
+  "prompts": {},
+  "sessions": {
+    "s_b4a28f02a9404f": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "1c2915d4-00ba-4cb6-8992-573f1c193b8a",
+        "model": "claude-opus-5"
+      },
+      "human_author": "Samu <samuel.requena@archlet.ch>"
+    }
+  }
+}
