@@ -1,0 +1,21 @@
+packages/core/src/generators/date-transform.ts
+  s_b4a28f02a9404f::t_db4bf2038b6f4e 161-196
+packages/core/src/generators/date-transform.test.ts
+  s_b4a28f02a9404f::t_068353fffc833f 726-804
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.22",
+  "base_commit_sha": "29774e3b53ef0f61cb983b9ddeda9622608189e5",
+  "prompts": {},
+  "sessions": {
+    "s_b4a28f02a9404f": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "1c2915d4-00ba-4cb6-8992-573f1c193b8a",
+        "model": "claude-opus-5"
+      },
+      "human_author": "Samu <samuel.requena@archlet.ch>"
+    }
+  }
+}
