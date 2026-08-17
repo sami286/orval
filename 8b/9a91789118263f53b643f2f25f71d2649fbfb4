@@ -1,0 +1,25 @@
+packages/core/src/generators/date-transform.ts
+  s_b4a28f02a9404f::t_bfcfb7e3e3e69f 13,15,17-18,24-33,37-48,51-86,94-102,106-127,129-132,134,136,139-142,145,149-153,155-157,161,163-166,172-183,191,199,201,210-217,222-230,232,236-257,270,272-273,275,277-293,302,309-323,340,342-373,395,399-439,441-444,446-454,456-458,463
+  s_b4a28f02a9404f::t_cb33206209127d 49-50
+  s_b4a28f02a9404f::t_6a41dee3ab327e 459-462
+packages/core/src/generators/date-transform.test.ts
+  s_b4a28f02a9404f::t_d524c88d317f03 613-849,862,864,875,878-879
+  s_b4a28f02a9404f::t_c3d25885956c03 345,349,382,388,436,520,524,566,570
+  s_b4a28f02a9404f::t_3eeab88b177191 850-861,863,865-874,876-877
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.22",
+  "base_commit_sha": "8b9a91789118263f53b643f2f25f71d2649fbfb4",
+  "prompts": {},
+  "sessions": {
+    "s_b4a28f02a9404f": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "1c2915d4-00ba-4cb6-8992-573f1c193b8a",
+        "model": "claude-opus-5"
+      },
+      "human_author": "Samu <samuel.requena@archlet.ch>"
+    }
+  }
+}
