@@ -1,0 +1,19 @@
+docs/content/docs/reference/configuration/output.mdx
+  s_b4a28f02a9404f::t_b5f9950e2d80ac 3369-3370,3409-3444
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.22",
+  "base_commit_sha": "0c65832dab506b85d684109c7d1a5aa83e39f962",
+  "prompts": {},
+  "sessions": {
+    "s_b4a28f02a9404f": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "1c2915d4-00ba-4cb6-8992-573f1c193b8a",
+        "model": "claude-fable-5"
+      },
+      "human_author": "Samu <samuel.requena@archlet.ch>"
+    }
+  }
+}
