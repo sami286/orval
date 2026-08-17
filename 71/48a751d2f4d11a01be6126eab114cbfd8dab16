@@ -1,0 +1,53 @@
+tests/specifications/dates-transform.yaml
+  s_b4a28f02a9404f::t_6f0029d799e097 1-157
+tests/configs/react-query.config.ts
+  s_b4a28f02a9404f::t_6f0029d799e097 1703-1742
+tests/specifications/dates-transform-3-1.yaml
+  s_b4a28f02a9404f::t_6f0029d799e097 1-42
+tests/__snapshots__/react-query/dates-transform-3-1/endpoints.ts
+  s_b4a28f02a9404f::t_bfdd1d5c48b106 1-208
+tests/__snapshots__/react-query/dates-transform-3-1/model/audit.ts
+  s_b4a28f02a9404f::t_034175d3fb9df1 1-10
+tests/__snapshots__/react-query/dates-transform-3-1/model/index.ts
+  s_b4a28f02a9404f::t_b1c4ad09309de4 1-9
+tests/__snapshots__/react-query/dates-transform-3-1/model/subscription.ts
+  s_b4a28f02a9404f::t_f1c4ae8dfda437 1-13
+tests/__snapshots__/react-query/dates-transform/endpoints.ts
+  s_b4a28f02a9404f::t_c7bf7b95f74fec 1-810
+tests/__snapshots__/react-query/dates-transform/model/auditEntry.ts
+  s_b4a28f02a9404f::t_7f643e238cad17 1-11
+tests/__snapshots__/react-query/dates-transform/model/auditNode.ts
+  s_b4a28f02a9404f::t_c164f568a1e719 1-11
+tests/__snapshots__/react-query/dates-transform/model/auditRecord.ts
+  s_b4a28f02a9404f::t_ae087d833bf5a7 1-15
+tests/__snapshots__/react-query/dates-transform/model/cat.ts
+  s_b4a28f02a9404f::t_5159eb40e7412c 1-12
+tests/__snapshots__/react-query/dates-transform/model/catPetType.ts
+  s_b4a28f02a9404f::t_03388cef5475b3 1-12
+tests/__snapshots__/react-query/dates-transform/model/dog.ts
+  s_b4a28f02a9404f::t_9bf5aae3f7b91d 1-13
+tests/__snapshots__/react-query/dates-transform/model/dogPetType.ts
+  s_b4a28f02a9404f::t_73b20010e4b7a9 1-12
+tests/__snapshots__/react-query/dates-transform/model/index.ts
+  s_b4a28f02a9404f::t_d99933d90976c9 1-16
+tests/__snapshots__/react-query/dates-transform/model/orderDetails.ts
+  s_b4a28f02a9404f::t_66a85d5ee990a2 1-16
+tests/__snapshots__/react-query/dates-transform/model/orderEvent.ts
+  s_b4a28f02a9404f::t_d992148c9c5a6b 1-12
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.22",
+  "base_commit_sha": "7148a751d2f4d11a01be6126eab114cbfd8dab16",
+  "prompts": {},
+  "sessions": {
+    "s_b4a28f02a9404f": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "1c2915d4-00ba-4cb6-8992-573f1c193b8a",
+        "model": "claude-opus-5"
+      },
+      "human_author": "Samu <samuel.requena@archlet.ch>"
+    }
+  }
+}
