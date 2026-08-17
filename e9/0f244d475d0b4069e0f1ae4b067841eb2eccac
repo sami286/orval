@@ -1,0 +1,28 @@
+packages/query/src/client.test.ts
+  s_b4a28f02a9404f::t_6f0029d799e097 1-8,12,14,605-820
+  s_b4a28f02a9404f::t_1f6de4c06a7063 821
+tests/specifications/dates-transform.yaml
+  s_b4a28f02a9404f::t_6f0029d799e097 1-157
+tests/specifications/dates-transform-3-1.yaml
+  s_b4a28f02a9404f::t_6f0029d799e097 1-42
+tests/configs/react-query.config.ts
+  s_b4a28f02a9404f::t_6f0029d799e097 1703-1742
+packages/query/src/client.ts
+  s_b4a28f02a9404f::t_6f0029d799e097 7,324-338,381,393,405,407,446-450,452
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.22",
+  "base_commit_sha": "e90f244d475d0b4069e0f1ae4b067841eb2eccac",
+  "prompts": {},
+  "sessions": {
+    "s_b4a28f02a9404f": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "1c2915d4-00ba-4cb6-8992-573f1c193b8a",
+        "model": "claude-opus-5"
+      },
+      "human_author": "Samu <samuel.requena@archlet.ch>"
+    }
+  }
+}
