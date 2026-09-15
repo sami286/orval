@@ -1,0 +1,22 @@
+packages/core/src/generators/date-transform.test.ts
+  s_fec70ee3de1248::t_21b2350ff0067d 1530-1563
+  s_fec70ee3de1248::t_343b36c69f7641 1523-1529
+packages/core/src/generators/date-transform.ts
+  s_fec70ee3de1248::t_2e01df6e460297 762-769
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.4",
+  "base_commit_sha": "82bb6d65da8720b6241c7eda845680dc7fc269dd",
+  "prompts": {},
+  "sessions": {
+    "s_fec70ee3de1248": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "a203ec7a-8fa4-4ed0-9645-3c45191b8249",
+        "model": "claude-opus-5"
+      },
+      "human_author": "Samu <samuel.requena@archlet.ch>"
+    }
+  }
+}
