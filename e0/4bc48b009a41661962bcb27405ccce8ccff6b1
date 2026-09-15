@@ -1,0 +1,35 @@
+packages/query/src/client.ts
+  s_fec70ee3de1248::t_c9e5531c510651 453
+  s_fec70ee3de1248::t_b5658aadd3f791 439
+  s_fec70ee3de1248::t_ed2d49183d3215 10
+  s_fec70ee3de1248::t_5872be703e7b8b 368-384,388
+  s_fec70ee3de1248::t_5fb775dd3d3572 516
+  s_fec70ee3de1248::t_fb24803356a320 462
+tests/specifications/dates-transform.yaml
+  s_fec70ee3de1248::t_8d23ef28150e92 91-106
+  s_fec70ee3de1248::t_23a895700b244e 174-188
+tests/__snapshots__/react-query/dates-transform/endpoints.ts
+  s_fec70ee3de1248::t_3e025eb97d70c5 7,12,17-18,23,814-926
+tests/__snapshots__/react-query/dates-transform/model/appointment.ts
+  s_fec70ee3de1248::t_7b016c314e3d0c 1-15
+tests/__snapshots__/react-query/dates-transform/model/appointmentSlotsItem.ts
+  s_fec70ee3de1248::t_9273d4127feecf 1-11
+tests/__snapshots__/react-query/dates-transform/model/index.ts
+  s_fec70ee3de1248::t_9663961a3c1d54 8-9
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.4",
+  "base_commit_sha": "e04bc48b009a41661962bcb27405ccce8ccff6b1",
+  "prompts": {},
+  "sessions": {
+    "s_fec70ee3de1248": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "a203ec7a-8fa4-4ed0-9645-3c45191b8249",
+        "model": "claude-opus-5"
+      },
+      "human_author": "Samu <samuel.requena@archlet.ch>"
+    }
+  }
+}
