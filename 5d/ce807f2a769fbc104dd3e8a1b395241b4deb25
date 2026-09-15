@@ -1,0 +1,22 @@
+tests/dates-transform-request.spec.ts
+  s_fec70ee3de1248::t_779a498a89dae5 20-28
+  s_fec70ee3de1248::t_6e7519c1800991 1-19,29-80
+tests/vitest.snapshots.ts
+  s_fec70ee3de1248::t_94803c7893b0c0 16
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.4",
+  "base_commit_sha": "5dce807f2a769fbc104dd3e8a1b395241b4deb25",
+  "prompts": {},
+  "sessions": {
+    "s_fec70ee3de1248": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "a203ec7a-8fa4-4ed0-9645-3c45191b8249",
+        "model": "claude-opus-5"
+      },
+      "human_author": "Samu <samuel.requena@archlet.ch>"
+    }
+  }
+}
