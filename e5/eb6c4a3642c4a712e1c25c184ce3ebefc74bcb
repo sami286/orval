@@ -1,0 +1,35 @@
+packages/core/src/generators/date-transform.test.ts
+  s_fec70ee3de1248::t_aa1fb4627f1662 1449-1453,1461
+  s_fec70ee3de1248::t_b0e88531c3885c 1639-1694
+tests/specifications/dates-transform.yaml
+  s_fec70ee3de1248::t_4724336113560d 107-129
+  s_fec70ee3de1248::t_69e3826cb777ad 212-215
+packages/core/src/generators/date-transform.ts
+  s_fec70ee3de1248::t_67ece15194cabf 802-811
+packages/query/src/client.test.ts
+  s_fec70ee3de1248::t_3d4f45bd321f2b 993-1021,1023-1083
+  s_fec70ee3de1248::t_69c3595202a6f1 1022
+  s_fec70ee3de1248::t_afe8c8e240475a 1084-1085
+tests/__snapshots__/react-query/dates-transform/endpoints.ts
+  s_fec70ee3de1248::t_530cbe0c80c90a 23-30,934-1049
+tests/__snapshots__/react-query/dates-transform/model/index.ts
+  s_fec70ee3de1248::t_4f0775c4a5b6a8 19
+tests/__snapshots__/react-query/dates-transform/model/reminderUpdate.ts
+  s_fec70ee3de1248::t_c75ea94a92e35c 1-10
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.4",
+  "base_commit_sha": "e5eb6c4a3642c4a712e1c25c184ce3ebefc74bcb",
+  "prompts": {},
+  "sessions": {
+    "s_fec70ee3de1248": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "a203ec7a-8fa4-4ed0-9645-3c45191b8249",
+        "model": "claude-opus-5"
+      },
+      "human_author": "Samu <samuel.requena@archlet.ch>"
+    }
+  }
+}
