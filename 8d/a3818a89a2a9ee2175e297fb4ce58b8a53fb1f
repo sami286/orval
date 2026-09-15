@@ -1,0 +1,44 @@
+packages/core/src/generators/date-transform.ts
+  s_fec70ee3de1248::t_df09d9d8dec195 293-298,310,312
+  s_fec70ee3de1248::t_e53781c57b1a4b 629-636,639
+  s_fec70ee3de1248::t_620318b26e515b 210-215
+  s_fec70ee3de1248::t_dc19b7695f1f41 725
+  s_fec70ee3de1248::t_336c7ba0beb419 398
+  s_fec70ee3de1248::t_81335126af8f5a 461
+  s_fec70ee3de1248::t_6f100937bd9f29 358-374
+  s_fec70ee3de1248::t_c3b0e3fe01dd30 788-794
+packages/core/src/generators/date-transform.test.ts
+  s_fec70ee3de1248::t_e480e249a2c590 1859-1872
+  s_fec70ee3de1248::t_66cd081bca5eb3 1124,1159,1187,1211,1245,1281,1317,1363,1402,1444,1646,1755,1782,1827,1853
+  s_fec70ee3de1248::t_1913e88dcb6bb2 1447-1610
+tests/specifications/dates-transform.yaml
+  s_fec70ee3de1248::t_ce197cb8487b96 107-128
+  s_fec70ee3de1248::t_28a20a8c02bda5 238-254
+tests/dates-transform-request.spec.ts
+  s_fec70ee3de1248::t_106a7c79a42398 82-107
+  s_fec70ee3de1248::t_2511d097ab7148 6
+tests/__snapshots__/react-query/dates-transform/endpoints.ts
+  s_fec70ee3de1248::t_83aa135f9e06e3 25,855-858,860-863,868-871,943-1057,1094-1097
+tests/__snapshots__/react-query/dates-transform/model/appointmentBase.ts
+  s_fec70ee3de1248::t_ebe3bd8f41c6d0 1-10
+tests/__snapshots__/react-query/dates-transform/model/appointmentWithDuplicateDate.ts
+  s_fec70ee3de1248::t_051370df1a0971 1-12
+tests/__snapshots__/react-query/dates-transform/model/index.ts
+  s_fec70ee3de1248::t_b982224ece0d5a 9,11
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.4",
+  "base_commit_sha": "8da3818a89a2a9ee2175e297fb4ce58b8a53fb1f",
+  "prompts": {},
+  "sessions": {
+    "s_fec70ee3de1248": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "a203ec7a-8fa4-4ed0-9645-3c45191b8249",
+        "model": "claude-opus-5"
+      },
+      "human_author": "Samu <samuel.requena@archlet.ch>"
+    }
+  }
+}
