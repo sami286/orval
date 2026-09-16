@@ -1,0 +1,31 @@
+tests/dates-transform-request.spec.ts
+  s_fec70ee3de1248::t_6a2c365e818355 8
+  s_fec70ee3de1248::t_9bfe48c8cd16ab 38-42,48-54
+  s_fec70ee3de1248::t_1540aa2b8819f6 195-229
+  s_fec70ee3de1248::t_93197026ab9734 138-194,230
+  s_fec70ee3de1248::t_90db5fd6c8000c 35-37,43-47,55-63
+tests/__snapshots__/react-query/dates-transform/endpoints.ts
+  s_fec70ee3de1248::t_c89d41c941d2e0 27,1177-1302,1305
+  s_fec70ee3de1248::t_82f64314914a49 1303-1304
+tests/__snapshots__/react-query/dates-transform/model/index.ts
+  s_fec70ee3de1248::t_834dc1b0e08115 15-16,19,22-25
+tests/specifications/dates-transform.yaml
+  s_fec70ee3de1248::t_aa1fe3d326e957 152-177
+  s_fec70ee3de1248::t_bb0be77ac4c561 281-312
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.4",
+  "base_commit_sha": "8628b2195694d90edb077d34658df4a11965b116",
+  "prompts": {},
+  "sessions": {
+    "s_fec70ee3de1248": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "a203ec7a-8fa4-4ed0-9645-3c45191b8249",
+        "model": "claude-opus-5"
+      },
+      "human_author": "Samu <samuel.requena@archlet.ch>"
+    }
+  }
+}
