@@ -1,0 +1,23 @@
+docs/content/docs/reference/configuration/output.mdx
+  s_fec70ee3de1248::t_60d536f2591d50 3940-3941
+  s_fec70ee3de1248::t_ac5cf86dccd606 3942
+  s_fec70ee3de1248::t_14cfe63a63e891 3938-3939
+  s_fec70ee3de1248::t_8d5406e4c2f65d 3933
+  s_fec70ee3de1248::t_0f230e8584cb13 3943-3955
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.4",
+  "base_commit_sha": "57d1150f5b90c7741e9723dde4cb306065af5089",
+  "prompts": {},
+  "sessions": {
+    "s_fec70ee3de1248": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "a203ec7a-8fa4-4ed0-9645-3c45191b8249",
+        "model": "claude-opus-5"
+      },
+      "human_author": "Samu <samuel.requena@archlet.ch>"
+    }
+  }
+}
