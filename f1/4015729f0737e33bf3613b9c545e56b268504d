@@ -1,0 +1,31 @@
+tests/__snapshots__/react-query/dates-transform/model/columnFillIn.ts
+  s_fec70ee3de1248::t_cb7498bfa826dc 1-10
+tests/__snapshots__/react-query/dates-transform/model/importedFillInKind.ts
+  s_fec70ee3de1248::t_91f700c680ff98 1-13
+tests/__snapshots__/react-query/dates-transform/model/manualFillInKind.ts
+  s_fec70ee3de1248::t_73ffbdc4049bdd 1-13
+tests/__snapshots__/react-query/dates-transform/model/manualFillIn.ts
+  s_fec70ee3de1248::t_f4dd22bf854fba 1-12
+tests/__snapshots__/react-query/dates-transform/model/benchmarkFillInsColumnFillIns.ts
+  s_fec70ee3de1248::t_975f09cb293cae 1-9
+tests/__snapshots__/react-query/dates-transform/model/benchmarkFillIns.ts
+  s_fec70ee3de1248::t_3c2ab124f0ecb8 1-12
+tests/__snapshots__/react-query/dates-transform/model/importedFillIn.ts
+  s_fec70ee3de1248::t_cfc373bc226cbc 1-12
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.4",
+  "base_commit_sha": "f14015729f0737e33bf3613b9c545e56b268504d",
+  "prompts": {},
+  "sessions": {
+    "s_fec70ee3de1248": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "a203ec7a-8fa4-4ed0-9645-3c45191b8249",
+        "model": "claude-opus-5"
+      },
+      "human_author": "Samu <samuel.requena@archlet.ch>"
+    }
+  }
+}
