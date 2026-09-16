@@ -1,0 +1,31 @@
+docs/content/docs/reference/configuration/output.mdx
+  s_fec70ee3de1248::t_0f230e8584cb13 3943-3955
+packages/core/src/generators/date-transform.test.ts
+  s_fec70ee3de1248::t_ea69ebc1676a66 1518-1562,1565-1568
+  s_fec70ee3de1248::t_084ea5c1b3adb9 1223-1261
+  s_fec70ee3de1248::t_484a6c8d65a4ea 2517-2558
+  s_fec70ee3de1248::t_0e83285392a2b1 584-630
+  s_fec70ee3de1248::t_16c06c94be3b83 2168-2212
+  s_fec70ee3de1248::t_5ee559235ebcb2 2837-2880
+packages/core/src/generators/date-transform.ts
+  s_fec70ee3de1248::t_23df8fa279f4b5 131-132
+  s_fec70ee3de1248::t_a5ba61b853db96 800-808
+  s_fec70ee3de1248::t_6491d64a7a851b 248-255
+  s_fec70ee3de1248::t_82a084a0bc6a04 80-81,83-91
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.4",
+  "base_commit_sha": "867e4bfbc1991a1698a13187603fc753813fed25",
+  "prompts": {},
+  "sessions": {
+    "s_fec70ee3de1248": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "a203ec7a-8fa4-4ed0-9645-3c45191b8249",
+        "model": "claude-opus-5"
+      },
+      "human_author": "Samu <samuel.requena@archlet.ch>"
+    }
+  }
+}
