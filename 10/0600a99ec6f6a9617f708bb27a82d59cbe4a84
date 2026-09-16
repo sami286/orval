@@ -8,6 +8,7 @@ tests/dates-transform-request.spec.ts
   s_fec70ee3de1248::t_9bfe48c8cd16ab 38-42,48-54
   s_fec70ee3de1248::t_93197026ab9734 138,155-210,246
   s_fec70ee3de1248::t_1540aa2b8819f6 211-245
+  s_fec70ee3de1248::t_728613d14edd9d 154
 tests/__snapshots__/react-query/dates-transform/endpoints.ts
   s_fec70ee3de1248::t_c89d41c941d2e0 1179-1304,1307
   s_fec70ee3de1248::t_5800dd19d49a11 31,1305-1306
