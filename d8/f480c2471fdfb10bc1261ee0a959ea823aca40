@@ -1,0 +1,103 @@
+tests/vitest.snapshots.ts
+  s_fec70ee3de1248::t_94803c7893b0c0 16
+tests/__snapshots__/react-query/dates-transform/model/appointmentWithDuplicateDate.ts
+  s_fec70ee3de1248::t_051370df1a0971 1-12
+packages/query/src/client.ts
+  s_fec70ee3de1248::t_b5658aadd3f791 454
+  s_fec70ee3de1248::t_0557e389d9d676 369-376
+  s_fec70ee3de1248::t_ed2d49183d3215 10
+  s_fec70ee3de1248::t_c9e5531c510651 468
+  s_fec70ee3de1248::t_5fb775dd3d3572 531
+  s_fec70ee3de1248::t_38648d5b1afb59 19
+  s_fec70ee3de1248::t_5872be703e7b8b 377-390,394
+  s_fec70ee3de1248::t_fb24803356a320 477
+tests/__snapshots__/react-query/dates-transform/model/index.ts
+  s_fec70ee3de1248::t_b982224ece0d5a 9,11
+  s_fec70ee3de1248::t_9663961a3c1d54 8,10
+  s_fec70ee3de1248::t_4f0775c4a5b6a8 21
+tests/__snapshots__/react-query/dates-transform/model/reminderUpdate.ts
+  s_fec70ee3de1248::t_c75ea94a92e35c 1-10
+tests/__snapshots__/react-query/dates-transform/model/appointmentBase.ts
+  s_fec70ee3de1248::t_ebe3bd8f41c6d0 1-10
+tests/__snapshots__/react-query/dates-transform/model/appointmentSlotsItem.ts
+  s_fec70ee3de1248::t_9273d4127feecf 1-11
+packages/core/src/generators/date-transform.test.ts
+  s_fec70ee3de1248::t_d0f8330f6c35e0 11
+  s_fec70ee3de1248::t_ce2c0d1fb972fe 1383
+  s_fec70ee3de1248::t_cae3018a2d8a31 5,12
+  s_fec70ee3de1248::t_e480e249a2c590 1216,1446,1734-1737,1859-1872
+  s_fec70ee3de1248::t_d931b3c2a86242 1611-1612,1618-1624,1626-1645,1647-1690,1739-1754,1756-1781,1783-1802,1873
+  s_fec70ee3de1248::t_1913e88dcb6bb2 1214,1447-1610
+  s_fec70ee3de1248::t_66cd081bca5eb3 1124,1159,1187,1211,1245,1281,1317,1363,1402,1444,1646,1755,1782,1827,1853
+  s_fec70ee3de1248::t_21b2350ff0067d 1698-1731
+  s_fec70ee3de1248::t_7f2bd479ad1042 1218-1244,1246-1253
+  s_fec70ee3de1248::t_e0d3793a56aec2 1108-1123,1125-1158,1160-1186,1188-1210,1212-1213,1254-1280,1282-1316,1318-1362,1364-1382
+  s_fec70ee3de1248::t_653614355395d2 1384-1401,1403-1442
+  s_fec70ee3de1248::t_343b36c69f7641 1691-1697,1732-1733
+  s_fec70ee3de1248::t_b0e88531c3885c 1215,1445,1803-1826,1828-1852,1854-1858
+  s_fec70ee3de1248::t_c06e890df1c15c 1443
+  s_fec70ee3de1248::t_aa1fb4627f1662 1613-1617,1625
+  s_fec70ee3de1248::t_a00ce0d1603723 1217
+  s_fec70ee3de1248::t_639b012a1a82ce 1738
+packages/query/src/client.test.ts
+  s_fec70ee3de1248::t_69c3595202a6f1 1081
+  s_fec70ee3de1248::t_c436655577421d 1146-1149
+  s_fec70ee3de1248::t_afe8c8e240475a 1143,1157
+  s_fec70ee3de1248::t_3d4f45bd321f2b 1052-1080,1082-1142
+  s_fec70ee3de1248::t_c82a203e1f0c7d 1144-1145,1150-1156
+tests/dates-transform-request.spec.ts
+  s_fec70ee3de1248::t_6e7519c1800991 1-5,7-20,30-81
+  s_fec70ee3de1248::t_779a498a89dae5 21-29
+  s_fec70ee3de1248::t_2511d097ab7148 6
+  s_fec70ee3de1248::t_106a7c79a42398 82-107
+tests/__snapshots__/react-query/dates-transform/model/appointment.ts
+  s_fec70ee3de1248::t_7b016c314e3d0c 1-15
+tests/specifications/dates-transform.yaml
+  s_fec70ee3de1248::t_ce197cb8487b96 107-128
+  s_fec70ee3de1248::t_4724336113560d 129-151
+  s_fec70ee3de1248::t_69e3826cb777ad 234-237
+  s_fec70ee3de1248::t_23a895700b244e 219-233
+  s_fec70ee3de1248::t_28a20a8c02bda5 238-254
+  s_fec70ee3de1248::t_8d23ef28150e92 91-106
+tests/__snapshots__/react-query/dates-transform/endpoints.ts
+  s_fec70ee3de1248::t_83aa135f9e06e3 25,855-858,860-863,868-871,943-1057,1094-1097
+  s_fec70ee3de1248::t_3e025eb97d70c5 7,12,17-18,822-854,859,864-867,872-941
+  s_fec70ee3de1248::t_530cbe0c80c90a 23-24,26-31,942,1058-1093,1098-1175
+packages/core/src/generators/date-transform.ts
+  s_fec70ee3de1248::t_28cf05162a8436 329-335
+  s_fec70ee3de1248::t_9715893ac5aa0e 489-490
+  s_fec70ee3de1248::t_67ece15194cabf 847-856
+  s_fec70ee3de1248::t_33ddab07e4a66e 349-357
+  s_fec70ee3de1248::t_df09d9d8dec195 293-298,310,312
+  s_fec70ee3de1248::t_e53781c57b1a4b 629-636,639
+  s_fec70ee3de1248::t_a73f6dd5174b90 460
+  s_fec70ee3de1248::t_ef009827bee0e3 643-649,661
+  s_fec70ee3de1248::t_81335126af8f5a 461
+  s_fec70ee3de1248::t_896cc24e6d70ce 621-628,637-638,640-642,650-660,662-718,723,726-752
+  s_fec70ee3de1248::t_c3b0e3fe01dd30 788-794
+  s_fec70ee3de1248::t_363ab5c9eadaa0 753-787,795-806,815-846,857-866
+  s_fec70ee3de1248::t_dc19b7695f1f41 725
+  s_fec70ee3de1248::t_e13d0f56032531 4,7
+  s_fec70ee3de1248::t_b612184e890421 719-722,724
+  s_fec70ee3de1248::t_2e01df6e460297 807-814
+  s_fec70ee3de1248::t_620318b26e515b 210-215
+  s_fec70ee3de1248::t_336c7ba0beb419 398
+  s_fec70ee3de1248::t_6f100937bd9f29 358-374
+  s_fec70ee3de1248::t_9489147f2980bd 451-459,462-463
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.4",
+  "base_commit_sha": "d8f480c2471fdfb10bc1261ee0a959ea823aca40",
+  "prompts": {},
+  "sessions": {
+    "s_fec70ee3de1248": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "a203ec7a-8fa4-4ed0-9645-3c45191b8249",
+        "model": "claude-opus-5"
+      },
+      "human_author": "Samu <samuel.requena@archlet.ch>"
+    }
+  }
+}

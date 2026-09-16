@@ -1,0 +1,25 @@
+packages/core/src/generators/date-transform.ts
+  s_fec70ee3de1248::t_57f6e43de99e04 289,297,299
+  s_fec70ee3de1248::t_2a614479384578 303-332,338-351
+  s_fec70ee3de1248::t_1a2b6f4563c646 563-566
+  s_fec70ee3de1248::t_23a79a227064d1 352-359,364,372,398
+  s_fec70ee3de1248::t_89cd3122012d25 143,153,176,191,200,203,205,221,231,235,241,253
+  s_fec70ee3de1248::t_e3e31dd4ee5e39 424,432,448-453,457-459
+  s_fec70ee3de1248::t_8fc18c7676713b 460-461,463,466,486,493,512,567-570
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.4",
+  "base_commit_sha": "ca609588f6820bf2ecbd7772b180cecfafdf2124",
+  "prompts": {},
+  "sessions": {
+    "s_fec70ee3de1248": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "a203ec7a-8fa4-4ed0-9645-3c45191b8249",
+        "model": "claude-opus-5"
+      },
+      "human_author": "Samu <samuel.requena@archlet.ch>"
+    }
+  }
+}
