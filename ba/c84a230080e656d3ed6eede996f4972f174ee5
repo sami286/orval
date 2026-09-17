@@ -1,0 +1,59 @@
+tests/__snapshots__/react-query/dates-transform/model/intakePet.ts
+  s_fec70ee3de1248::t_45c576b1a127c1 1-10
+tests/__snapshots__/react-query/dates-transform/model/shelterIntakePets.ts
+  s_fec70ee3de1248::t_186a0523e00ba9 1-9
+tests/__snapshots__/react-query/dates-transform/model/shelterIntake.ts
+  s_fec70ee3de1248::t_8fbf959ac0c299 1-12
+tests/__snapshots__/react-query/dates-transform/model/index.ts
+  s_fec70ee3de1248::t_834dc1b0e08115 19-20
+  s_fec70ee3de1248::t_74b99067674482 21-23,27-28
+tests/__snapshots__/react-query/dates-transform/model/intakeDogPetType.ts
+  s_fec70ee3de1248::t_8c8b51e9af85ec 1-13
+tests/__snapshots__/react-query/dates-transform/model/intakeDog.ts
+  s_fec70ee3de1248::t_e1948bd48ee013 1-12
+tests/__snapshots__/react-query/dates-transform/model/intakeCatPetType.ts
+  s_fec70ee3de1248::t_b584d815c3d56b 1-13
+tests/specifications/dates-transform.yaml
+  s_fec70ee3de1248::t_84ae279c31500e 311
+  s_fec70ee3de1248::t_bb0be77ac4c561 280-310
+  s_fec70ee3de1248::t_aa1fe3d326e957 152-176
+tests/dates-transform-request.spec.ts
+  s_fec70ee3de1248::t_93197026ab9734 155-210,246
+  s_fec70ee3de1248::t_728613d14edd9d 154
+  s_fec70ee3de1248::t_6a2c365e818355 8
+  s_fec70ee3de1248::t_90db5fd6c8000c 35-37,43-47,55-63
+  s_fec70ee3de1248::t_1540aa2b8819f6 211-245
+  s_fec70ee3de1248::t_9bfe48c8cd16ab 38-42,48-54
+  s_fec70ee3de1248::t_4e5fe5a98a1eb7 247-249
+  s_1493fb26ac15e4::t_542ef10672d360 250-266
+tests/__snapshots__/react-query/dates-transform/model/intakeCat.ts
+  s_fec70ee3de1248::t_028774565735ab 1-12
+tests/__snapshots__/react-query/dates-transform/endpoints.ts
+  s_fec70ee3de1248::t_5800dd19d49a11 31
+  s_fec70ee3de1248::t_c89d41c941d2e0 1179-1303,1307
+  s_fec70ee3de1248::t_fda23f01b36d20 1304-1306,1308-1309
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.4",
+  "base_commit_sha": "bac84a230080e656d3ed6eede996f4972f174ee5",
+  "prompts": {},
+  "sessions": {
+    "s_1493fb26ac15e4": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "agent-afbc9dd461af38b8c",
+        "model": "unknown"
+      },
+      "human_author": "Samu <samuel.requena@archlet.ch>"
+    },
+    "s_fec70ee3de1248": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "a203ec7a-8fa4-4ed0-9645-3c45191b8249",
+        "model": "claude-opus-5"
+      },
+      "human_author": "Samu <samuel.requena@archlet.ch>"
+    }
+  }
+}
