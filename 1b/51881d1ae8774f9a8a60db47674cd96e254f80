@@ -1,0 +1,22 @@
+packages/fetch/src/index.ts
+  s_1d746456a08b49::t_b540e8e68318ed 976
+  s_1d746456a08b49::t_6e3a340de38f33 930-954
+packages/fetch/src/index.test.ts
+  s_1d746456a08b49::t_cad2b9d9c23b21 1270-1316
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.4",
+  "base_commit_sha": "1b51881d1ae8774f9a8a60db47674cd96e254f80",
+  "prompts": {},
+  "sessions": {
+    "s_1d746456a08b49": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "b65b8aaf-c40d-492e-b8a5-31ea9fbb2975",
+        "model": "claude-opus-5"
+      },
+      "human_author": "Samu <samuel.requena@archlet.ch>"
+    }
+  }
+}
