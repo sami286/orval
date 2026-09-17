@@ -1,0 +1,25 @@
+packages/core/src/utils/http-status.test.ts
+  s_1d746456a08b49::t_57210b51b4da00 3-7
+  s_1d746456a08b49::t_e9c8a1aadb792c 82-133
+packages/core/src/utils/http-status.ts
+  s_1d746456a08b49::t_37ad118a5edbb7 93-140
+packages/axios/src/index.ts
+  s_1d746456a08b49::t_590858742703bf 174,176,183-188
+  s_1d746456a08b49::t_8387b42e68de7e 18
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.4",
+  "base_commit_sha": "e1ebaef805ac1de7ce4a24911758bde8e3a347fb",
+  "prompts": {},
+  "sessions": {
+    "s_1d746456a08b49": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "b65b8aaf-c40d-492e-b8a5-31ea9fbb2975",
+        "model": "claude-opus-5"
+      },
+      "human_author": "Samu <samuel.requena@archlet.ch>"
+    }
+  }
+}
