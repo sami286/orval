@@ -10,8 +10,11 @@ tests/dates-transform-request.spec.ts
   s_1d746456a08b49::t_8ff093f980c686 23
   s_1d746456a08b49::t_ca96443aefe66c 148,259-272,274
   s_1d746456a08b49::t_aad179e77639e2 273
+  s_1d746456a08b49::t_ba2af74a69a9c0 258
+  s_1d746456a08b49::t_160146e4c5c391 281
 packages/core/src/generators/date-transform.ts
   s_1d746456a08b49::t_ca10cb63300326 776
+  s_1d746456a08b49::t_ba2af74a69a9c0 467-478
 ---
 {
   "schema_version": "authorship/3.0.0",
