@@ -1,0 +1,356 @@
+tests/__snapshots__/fetch/dates-transform-no-http-response/model/appointmentBase.ts
+  s_1d746456a08b49::t_67cc714758cb92 1-10
+tests/__snapshots__/react-query/dates-transform-fetch/model/intakeCat.ts
+  s_1d746456a08b49::t_1a558d77ea5ba5 1-12
+tests/__snapshots__/fetch/dates-transform-hook-mutator/model/reminderUpdate.ts
+  s_1d746456a08b49::t_80c659b95515cf 1-10
+tests/__snapshots__/fetch/dates-transform-mutator/model/dogPetType.ts
+  s_1d746456a08b49::t_10a1d10c7fb968 1-12
+tests/__snapshots__/fetch/dates-transform-hook-mutator/model/catPetType.ts
+  s_1d746456a08b49::t_eeef969bf409a9 1-12
+tests/__snapshots__/runtime-validation/fetch-dates-transform/model/auditNode.zod.ts
+  s_1d746456a08b49::t_6e07b6f9338768 1-20
+tests/__snapshots__/fetch/dates-transform-no-http-response/model/cat.ts
+  s_1d746456a08b49::t_4017373b349d41 1-12
+tests/__snapshots__/runtime-validation/fetch-dates-transform/model/orderDetails.zod.ts
+  s_1d746456a08b49::t_d0eb856f4b99f9 1-24
+tests/__snapshots__/fetch/dates-transform-hook-mutator/model/intakeDogPetType.ts
+  s_1d746456a08b49::t_084cb33f2a18b9 1-13
+tests/__snapshots__/react-query/dates-transform-fetch/model/dog.ts
+  s_1d746456a08b49::t_290b1595b75d07 1-13
+tests/__snapshots__/fetch/dates-transform-no-http-response/model/intakeCat.ts
+  s_1d746456a08b49::t_d9e52573080673 1-12
+tests/__snapshots__/swr/dates-transform/model/index.ts
+  s_1d746456a08b49::t_99d94817b0bbdf 1-28
+tests/configs/runtime-validation.config.ts
+  s_1d746456a08b49::t_c6d47991009c9b 140-156
+tests/__snapshots__/swr/dates-transform/model/intakeDogPetType.ts
+  s_1d746456a08b49::t_c071f372be7eb5 1-13
+tests/__snapshots__/fetch/dates-transform/model/auditEntry.ts
+  s_1d746456a08b49::t_a6b604f223a471 1-11
+tests/__snapshots__/swr/dates-transform/model/intakeCat.ts
+  s_1d746456a08b49::t_8d5cd7246f0085 1-12
+tests/__snapshots__/fetch/dates-transform-hook-mutator/model/intakeDog.ts
+  s_1d746456a08b49::t_6f288289ed452d 1-12
+tests/__snapshots__/react-query/dates-transform-fetch/model/appointmentSlotsItem.ts
+  s_1d746456a08b49::t_5e85da524a78d2 1-11
+tests/__snapshots__/swr/dates-transform/model/auditRecord.ts
+  s_1d746456a08b49::t_78217948a1a916 1-15
+tests/__snapshots__/fetch/dates-transform/model/orderDetails.ts
+  s_1d746456a08b49::t_96f974fe3974c9 1-16
+tests/__snapshots__/runtime-validation/fetch-dates-transform/model/auditRecord.zod.ts
+  s_1d746456a08b49::t_60dae5a794eb2d 1-27
+tests/__snapshots__/react-query/dates-transform-fetch/endpoints.ts
+  s_1d746456a08b49::t_e2badd45d61b73 1-1704
+tests/__snapshots__/fetch/dates-transform-no-http-response/model/intakePet.ts
+  s_1d746456a08b49::t_bfc0d6ed784fdb 1-10
+tests/__snapshots__/fetch/dates-transform-no-http-response/model/shelterIntake.ts
+  s_1d746456a08b49::t_e5986232824780 1-12
+tests/__snapshots__/react-query/dates-transform-fetch/model/intakePet.ts
+  s_1d746456a08b49::t_398c723b5363cb 1-10
+tests/__snapshots__/swr/dates-transform/model/reminderUpdate.ts
+  s_1d746456a08b49::t_bb0dded1e5926e 1-10
+tests/__snapshots__/swr/dates-transform/model/appointmentSlotsItem.ts
+  s_1d746456a08b49::t_70b33f7194f181 1-11
+tests/__snapshots__/swr/dates-transform/model/auditNode.ts
+  s_1d746456a08b49::t_1df8fc7ef65c52 1-11
+tests/__snapshots__/fetch/dates-transform/model/auditNode.ts
+  s_1d746456a08b49::t_f6ebd72cc42e36 1-11
+tests/__snapshots__/fetch/dates-transform/model/index.ts
+  s_1d746456a08b49::t_f2a76b3ac7170a 1-28
+tests/vitest.snapshots.ts
+  s_1d746456a08b49::t_df89ad89a1af66 18
+tests/__snapshots__/fetch/dates-transform-mutator/model/intakePet.ts
+  s_1d746456a08b49::t_cb1739aafe80be 1-10
+tests/__snapshots__/fetch/dates-transform-no-http-response/model/catPetType.ts
+  s_1d746456a08b49::t_802367dc850196 1-12
+tests/__snapshots__/fetch/dates-transform/model/intakeDogPetType.ts
+  s_1d746456a08b49::t_04ed73a5dfdb17 1-13
+tests/__snapshots__/fetch/dates-transform-hook-mutator/model/dogPetType.ts
+  s_1d746456a08b49::t_3f2aec2293fdb2 1-12
+tests/configs/swr.config.ts
+  s_1d746456a08b49::t_da41693594baa0 441-451
+tests/__snapshots__/fetch/dates-transform/model/shelterIntake.ts
+  s_1d746456a08b49::t_d5afb1a7560885 1-12
+tests/__snapshots__/react-query/dates-transform-fetch/model/index.ts
+  s_1d746456a08b49::t_93b42eb81355d7 1-28
+tests/__snapshots__/runtime-validation/fetch-dates-transform/model/orderEvent.zod.ts
+  s_1d746456a08b49::t_7742d05c52d0a6 1-16
+tests/__snapshots__/runtime-validation/fetch-dates-transform/model/index.ts
+  s_1d746456a08b49::t_7fbffc0ad5d148 1-26
+tests/__snapshots__/fetch/dates-transform-hook-mutator/endpoints.ts
+  s_1d746456a08b49::t_96f457a50e97f6 1-683
+tests/__snapshots__/fetch/dates-transform/model/appointment.ts
+  s_1d746456a08b49::t_b6b5503df4adfb 1-15
+tests/__snapshots__/fetch/dates-transform-mutator/model/catPetType.ts
+  s_1d746456a08b49::t_0d87bd56317374 1-12
+tests/__snapshots__/react-query/dates-transform-fetch/model/orderDetails.ts
+  s_1d746456a08b49::t_c6c28e5933b6a9 1-16
+tests/__snapshots__/swr/dates-transform/model/catPetType.ts
+  s_1d746456a08b49::t_12c3a2790582c9 1-12
+tests/__snapshots__/swr/dates-transform/model/intakeDog.ts
+  s_1d746456a08b49::t_9ec1e5972fc93d 1-12
+tests/__snapshots__/fetch/dates-transform-mutator/model/orderDetails.ts
+  s_1d746456a08b49::t_73d79fbb9fa39f 1-16
+tests/__snapshots__/react-query/dates-transform-fetch/model/intakeDog.ts
+  s_1d746456a08b49::t_4eeb2a787ff09a 1-12
+tests/__snapshots__/fetch/dates-transform-mutator/endpoints.ts
+  s_1d746456a08b49::t_5f5f90e77e6e69 1-630
+tests/__snapshots__/fetch/dates-transform-no-http-response/model/intakeCatPetType.ts
+  s_1d746456a08b49::t_8649e35eb07830 1-13
+tests/__snapshots__/fetch/dates-transform-hook-mutator/model/auditRecord.ts
+  s_1d746456a08b49::t_13664acfda32a8 1-15
+tests/__snapshots__/fetch/dates-transform-mutator/model/intakeDogPetType.ts
+  s_1d746456a08b49::t_700e068486a821 1-13
+tests/__snapshots__/fetch/dates-transform-hook-mutator/model/appointmentWithDuplicateDate.ts
+  s_1d746456a08b49::t_aa1f9375f748c0 1-12
+tests/__snapshots__/swr/dates-transform/model/intakePet.ts
+  s_1d746456a08b49::t_19f2ad9a3140b1 1-10
+tests/__snapshots__/react-query/dates-transform-fetch/model/intakeDogPetType.ts
+  s_1d746456a08b49::t_a4a28ee0577c21 1-13
+tests/__snapshots__/runtime-validation/fetch-dates-transform/model/appointmentBase.zod.ts
+  s_1d746456a08b49::t_b05783d429fb82 1-14
+tests/configs/fetch.config.ts
+  s_1d746456a08b49::t_543f5b4ace6f00 1229-1287
+tests/__snapshots__/swr/dates-transform/model/shelterIntakePets.ts
+  s_1d746456a08b49::t_031f8b145ae1b7 1-9
+packages/fetch/src/index.test.ts
+  s_1d746456a08b49::t_8d13ef580e8983 1308-1317
+tests/__snapshots__/fetch/dates-transform-hook-mutator/model/dog.ts
+  s_1d746456a08b49::t_d0d7f47d901959 1-13
+tests/__snapshots__/fetch/dates-transform-hook-mutator/model/index.ts
+  s_1d746456a08b49::t_bbb2b7273ecf54 1-28
+tests/__snapshots__/runtime-validation/fetch-dates-transform/model/intakeCat.zod.ts
+  s_1d746456a08b49::t_be986c5ed49944 1-15
+tests/__snapshots__/fetch/dates-transform/model/catPetType.ts
+  s_1d746456a08b49::t_cb89075e4860e2 1-12
+tests/__snapshots__/fetch/dates-transform-hook-mutator/model/intakePet.ts
+  s_1d746456a08b49::t_7972d016c9ef54 1-10
+tests/__snapshots__/fetch/dates-transform-mutator/model/intakeCat.ts
+  s_1d746456a08b49::t_ab12e931d6b229 1-12
+tests/__snapshots__/fetch/dates-transform-no-http-response/model/appointmentSlotsItem.ts
+  s_1d746456a08b49::t_824cddb92428fd 1-11
+tests/__snapshots__/runtime-validation/fetch-dates-transform/model/appointmentWithDuplicateDate.zod.ts
+  s_1d746456a08b49::t_6345f0180d67a1 1-24
+tests/__snapshots__/runtime-validation/fetch-dates-transform/model/updateAppointmentDuplicateDateBody.zod.ts
+  s_1d746456a08b49::t_e7eecd5afe9180 1-24
+tests/__snapshots__/swr/dates-transform/model/appointment.ts
+  s_1d746456a08b49::t_2c6a4e7890fc21 1-15
+tests/__snapshots__/swr/dates-transform/model/dog.ts
+  s_1d746456a08b49::t_d225a6ebb986e1 1-13
+tests/__snapshots__/fetch/dates-transform-mutator/model/shelterIntakePets.ts
+  s_1d746456a08b49::t_9e41e0933961ff 1-9
+tests/__snapshots__/fetch/dates-transform/model/dogPetType.ts
+  s_1d746456a08b49::t_a38f9392eeeb80 1-12
+tests/mutators/use-custom-fetch.ts
+  s_1d746456a08b49::t_cfa09c2cad43c3 1-16
+tests/__snapshots__/react-query/dates-transform-fetch/model/cat.ts
+  s_1d746456a08b49::t_1378d8e88cdbd1 1-12
+tests/__snapshots__/fetch/dates-transform-hook-mutator/model/auditEntry.ts
+  s_1d746456a08b49::t_7918aaba26eb46 1-11
+tests/__snapshots__/swr/dates-transform/model/appointmentWithDuplicateDate.ts
+  s_1d746456a08b49::t_ce46a006b3b17c 1-12
+tests/__snapshots__/swr/dates-transform/endpoints.ts
+  s_1d746456a08b49::t_4e9cb61e93bcf8 1-1043
+tests/__snapshots__/fetch/dates-transform/model/auditRecord.ts
+  s_1d746456a08b49::t_35d10ea3ddfbb5 1-15
+tests/dates-transform-fetch.spec.ts
+  s_1d746456a08b49::t_74134e19e5fb22 3-6,31-46,51-58,62-63,75-76,89-90,99-102,104-108,110-117,120,122,126-127,138-139,146-182
+  s_1d746456a08b49::t_0e75c2591d7b3e 1-2,7-30,47-50,59-61,64-74,77-88,91-98,103,109,118-119,121,123-125,128-137,140-145,183
+tests/__snapshots__/fetch/dates-transform-mutator/model/appointmentSlotsItem.ts
+  s_1d746456a08b49::t_78bfe3d9500b04 1-11
+tests/__snapshots__/fetch/dates-transform/model/dog.ts
+  s_1d746456a08b49::t_66b0455cdd806f 1-13
+tests/__snapshots__/fetch/dates-transform-no-http-response/model/intakeDogPetType.ts
+  s_1d746456a08b49::t_70b7b992531c27 1-13
+tests/__snapshots__/fetch/dates-transform-hook-mutator/model/appointmentSlotsItem.ts
+  s_1d746456a08b49::t_c1a303a948e938 1-11
+tests/__snapshots__/react-query/dates-transform-fetch/model/auditRecord.ts
+  s_1d746456a08b49::t_7d0e9e5fe7c565 1-15
+tests/__snapshots__/runtime-validation/fetch-dates-transform/model/updateAppointmentBody.zod.ts
+  s_1d746456a08b49::t_caed3b51e0baf4 1-24
+tests/__snapshots__/fetch/dates-transform-mutator/model/appointmentWithDuplicateDate.ts
+  s_1d746456a08b49::t_f5cc05718b9b0e 1-12
+tests/__snapshots__/runtime-validation/fetch-dates-transform/model/appointment.zod.ts
+  s_1d746456a08b49::t_60813883d9dacd 1-22
+tests/__snapshots__/fetch/dates-transform-mutator/model/appointment.ts
+  s_1d746456a08b49::t_a86a8012d6a5c4 1-15
+tests/__snapshots__/fetch/dates-transform/model/orderEvent.ts
+  s_1d746456a08b49::t_38bff19a88e6a9 1-12
+tests/__snapshots__/fetch/dates-transform/model/intakePet.ts
+  s_1d746456a08b49::t_a4570063878e4c 1-10
+tests/__snapshots__/fetch/dates-transform-hook-mutator/model/auditNode.ts
+  s_1d746456a08b49::t_835a36fd750325 1-11
+tests/__snapshots__/fetch/dates-transform-mutator/model/reminderUpdate.ts
+  s_1d746456a08b49::t_1442a3b07d04bb 1-10
+tests/__snapshots__/swr/dates-transform/model/cat.ts
+  s_1d746456a08b49::t_f206d242d4f4a2 1-12
+tests/__snapshots__/fetch/dates-transform-no-http-response/model/orderEvent.ts
+  s_1d746456a08b49::t_21eb29f62aa347 1-12
+tests/__snapshots__/swr/dates-transform/model/shelterIntake.ts
+  s_1d746456a08b49::t_9ee7aa0edf3076 1-12
+tests/__snapshots__/fetch/dates-transform-hook-mutator/model/appointment.ts
+  s_1d746456a08b49::t_2f9c4ebdbadd55 1-15
+tests/__snapshots__/fetch/dates-transform-no-http-response/endpoints.ts
+  s_1d746456a08b49::t_72f73b51c361f8 1-614
+tests/__snapshots__/fetch/dates-transform-no-http-response/model/index.ts
+  s_1d746456a08b49::t_b30e2ec18e52c2 1-28
+tests/__snapshots__/fetch/dates-transform-mutator/model/intakeCatPetType.ts
+  s_1d746456a08b49::t_fe41f2a22b76eb 1-13
+tests/__snapshots__/swr/dates-transform/model/appointmentBase.ts
+  s_1d746456a08b49::t_f913cc13eca0e4 1-10
+tests/__snapshots__/runtime-validation/fetch-dates-transform/model/shelterIntake.zod.ts
+  s_1d746456a08b49::t_11156f208fb0f5 1-27
+tests/__snapshots__/react-query/dates-transform-fetch/model/shelterIntake.ts
+  s_1d746456a08b49::t_f8e1d3d3fdf9c2 1-12
+tests/__snapshots__/fetch/dates-transform-no-http-response/model/dog.ts
+  s_1d746456a08b49::t_fc32ac62d6dc64 1-13
+tests/__snapshots__/swr/dates-transform/model/dogPetType.ts
+  s_1d746456a08b49::t_4f11661d84afb8 1-12
+tests/__snapshots__/runtime-validation/fetch-dates-transform/model/dog.zod.ts
+  s_1d746456a08b49::t_217ea71b1bf851 1-15
+tests/__snapshots__/fetch/dates-transform-mutator/model/shelterIntake.ts
+  s_1d746456a08b49::t_7f8adf2683a096 1-12
+tests/__snapshots__/fetch/dates-transform/model/shelterIntakePets.ts
+  s_1d746456a08b49::t_a7d92e6eaaa29f 1-9
+tests/__snapshots__/fetch/dates-transform-mutator/model/auditEntry.ts
+  s_1d746456a08b49::t_220a065556be26 1-11
+tests/__snapshots__/fetch/dates-transform-mutator/model/dog.ts
+  s_1d746456a08b49::t_8e751c3dc4647b 1-13
+tests/__snapshots__/fetch/dates-transform-hook-mutator/model/shelterIntake.ts
+  s_1d746456a08b49::t_bc2a4cfc058a96 1-12
+tests/__snapshots__/runtime-validation/fetch-dates-transform/model/auditEntry.zod.ts
+  s_1d746456a08b49::t_006950a11ea92b 1-15
+tests/__snapshots__/fetch/dates-transform/model/appointmentSlotsItem.ts
+  s_1d746456a08b49::t_ea800e17fd790b 1-11
+tests/__snapshots__/runtime-validation/fetch-dates-transform/model/reminderUpdate.zod.ts
+  s_1d746456a08b49::t_1c9d45eb0ba5e1 1-14
+tests/__snapshots__/runtime-validation/fetch-dates-transform/endpoints.ts
+  s_1d746456a08b49::t_929246db91f029 1-737
+tests/__snapshots__/react-query/dates-transform-fetch/model/intakeCatPetType.ts
+  s_1d746456a08b49::t_be1b37f7374fb5 1-13
+tests/__snapshots__/fetch/dates-transform/endpoints.ts
+  s_1d746456a08b49::t_4bd71f3af7c409 1-688
+tests/__snapshots__/fetch/dates-transform-no-http-response/model/auditEntry.ts
+  s_1d746456a08b49::t_257294a2dac3f6 1-11
+tests/__snapshots__/react-query/dates-transform-fetch/model/auditNode.ts
+  s_1d746456a08b49::t_4bbcef4dba649c 1-11
+tests/__snapshots__/swr/dates-transform/model/auditEntry.ts
+  s_1d746456a08b49::t_4bc8ce7374b292 1-11
+tests/__snapshots__/react-query/dates-transform-fetch/model/orderEvent.ts
+  s_1d746456a08b49::t_2634055780b5db 1-12
+tests/__snapshots__/react-query/dates-transform-fetch/model/appointmentBase.ts
+  s_1d746456a08b49::t_20371ca3949b73 1-10
+tests/__snapshots__/fetch/dates-transform/model/intakeCat.ts
+  s_1d746456a08b49::t_1f115a664c547a 1-12
+tests/__snapshots__/fetch/dates-transform-mutator/model/index.ts
+  s_1d746456a08b49::t_d521c16bbe56d9 1-28
+tests/__snapshots__/fetch/dates-transform-no-http-response/model/appointmentWithDuplicateDate.ts
+  s_1d746456a08b49::t_05479f60e16e44 1-12
+tests/__snapshots__/react-query/dates-transform-fetch/model/auditEntry.ts
+  s_1d746456a08b49::t_d501acc133b566 1-11
+tests/__snapshots__/runtime-validation/fetch-dates-transform/model/cat.zod.ts
+  s_1d746456a08b49::t_a96579733c7675 1-15
+tests/configs/react-query.config.ts
+  s_1d746456a08b49::t_439e891b6fd686 1900-1911
+tests/__snapshots__/react-query/dates-transform-fetch/model/catPetType.ts
+  s_1d746456a08b49::t_5c8d2583dd0ca8 1-12
+tests/__snapshots__/swr/dates-transform/model/orderEvent.ts
+  s_1d746456a08b49::t_98b4be9bd172c1 1-12
+tests/__snapshots__/fetch/dates-transform/model/appointmentWithDuplicateDate.ts
+  s_1d746456a08b49::t_c2f80f8a979602 1-12
+tests/__snapshots__/runtime-validation/fetch-dates-transform/model/intakeDog.zod.ts
+  s_1d746456a08b49::t_c8c490b9e497a0 1-15
+tests/__snapshots__/fetch/dates-transform-no-http-response/model/auditRecord.ts
+  s_1d746456a08b49::t_6096eb99249bae 1-15
+tests/__snapshots__/fetch/dates-transform-mutator/model/orderEvent.ts
+  s_1d746456a08b49::t_3c15c5c1d611d8 1-12
+tests/__snapshots__/fetch/dates-transform/model/cat.ts
+  s_1d746456a08b49::t_60f9fe0719fdcd 1-12
+tests/__snapshots__/fetch/dates-transform-no-http-response/model/appointment.ts
+  s_1d746456a08b49::t_fe75eda1d712e7 1-15
+tests/__snapshots__/react-query/dates-transform-fetch/model/appointment.ts
+  s_1d746456a08b49::t_1ed9ac3d96d843 1-15
+tests/__snapshots__/swr/dates-transform/model/orderDetails.ts
+  s_1d746456a08b49::t_be9dd9f4bdea93 1-16
+tests/__snapshots__/fetch/dates-transform-no-http-response/model/intakeDog.ts
+  s_1d746456a08b49::t_e73e3138ebf2f8 1-12
+tests/__snapshots__/fetch/dates-transform/model/appointmentBase.ts
+  s_1d746456a08b49::t_5fdc5738f4cc10 1-10
+tests/__snapshots__/fetch/dates-transform/model/intakeCatPetType.ts
+  s_1d746456a08b49::t_e55faf39275b79 1-13
+tests/__snapshots__/fetch/dates-transform-mutator/model/cat.ts
+  s_1d746456a08b49::t_d970600598c385 1-12
+tests/__snapshots__/fetch/dates-transform-hook-mutator/model/appointmentBase.ts
+  s_1d746456a08b49::t_f3544dd98dbc9d 1-10
+tests/__snapshots__/fetch/dates-transform-mutator/model/appointmentBase.ts
+  s_1d746456a08b49::t_c0cf2a546501bc 1-10
+tests/__snapshots__/fetch/dates-transform-no-http-response/model/shelterIntakePets.ts
+  s_1d746456a08b49::t_02c80bd50d0a77 1-9
+tests/__snapshots__/fetch/dates-transform-no-http-response/model/reminderUpdate.ts
+  s_1d746456a08b49::t_d82ca64d819d4c 1-10
+tests/__snapshots__/fetch/dates-transform/model/intakeDog.ts
+  s_1d746456a08b49::t_6d4cd2f50ce6e7 1-12
+tests/__snapshots__/react-query/dates-transform-fetch/model/shelterIntakePets.ts
+  s_1d746456a08b49::t_3aa9fe9c3c6b7e 1-9
+tests/__snapshots__/fetch/dates-transform-no-http-response/model/auditNode.ts
+  s_1d746456a08b49::t_2191ade941d440 1-11
+tests/__snapshots__/runtime-validation/fetch-dates-transform/model/intakePet.zod.ts
+  s_1d746456a08b49::t_79f947c719ceb6 1-21
+docs/content/docs/reference/configuration/output.mdx
+  s_1d746456a08b49::t_85aeb9f94ecbf0 2776-2778
+  s_1d746456a08b49::t_db68c87d6b55e0 4018-4022,4034
+  s_1d746456a08b49::t_3de84410dcc791 4023-4033
+tests/__snapshots__/fetch/dates-transform-mutator/model/intakeDog.ts
+  s_1d746456a08b49::t_83b2deb269b28f 1-12
+tests/__snapshots__/fetch/dates-transform-hook-mutator/model/intakeCat.ts
+  s_1d746456a08b49::t_53eaf7dd487cc8 1-12
+tests/__snapshots__/fetch/dates-transform-mutator/model/auditNode.ts
+  s_1d746456a08b49::t_27b0f165fcbc6a 1-11
+tests/__snapshots__/swr/dates-transform/model/intakeCatPetType.ts
+  s_1d746456a08b49::t_72a065980b4581 1-13
+tests/__snapshots__/runtime-validation/fetch-dates-transform/model/updateAppointmentReminderBody.zod.ts
+  s_1d746456a08b49::t_d59a3d60778c7d 1-18
+tests/__snapshots__/fetch/dates-transform-hook-mutator/model/cat.ts
+  s_1d746456a08b49::t_78b7f3df1efe32 1-12
+tests/__snapshots__/fetch/dates-transform-hook-mutator/model/orderEvent.ts
+  s_1d746456a08b49::t_01cc92f144cc3e 1-12
+tests/__snapshots__/fetch/dates-transform-hook-mutator/model/orderDetails.ts
+  s_1d746456a08b49::t_cb505c51fa2f62 1-16
+tests/__snapshots__/fetch/dates-transform-hook-mutator/model/shelterIntakePets.ts
+  s_1d746456a08b49::t_9861fef1cf9203 1-9
+tests/__snapshots__/react-query/dates-transform-fetch/model/dogPetType.ts
+  s_1d746456a08b49::t_c88c83fd47f416 1-12
+tests/__snapshots__/fetch/dates-transform-hook-mutator/model/intakeCatPetType.ts
+  s_1d746456a08b49::t_6080925868a05a 1-13
+tests/__snapshots__/react-query/dates-transform-fetch/model/reminderUpdate.ts
+  s_1d746456a08b49::t_9f500ae780067f 1-10
+tests/__snapshots__/fetch/dates-transform-mutator/model/auditRecord.ts
+  s_1d746456a08b49::t_ec6bdbeeb5fa42 1-15
+tests/__snapshots__/runtime-validation/fetch-dates-transform/model/updateShelterIntakeBody.zod.ts
+  s_1d746456a08b49::t_a3d102f92b0939 1-29
+tests/__snapshots__/fetch/dates-transform-no-http-response/model/dogPetType.ts
+  s_1d746456a08b49::t_bef13e0e959ae5 1-12
+tests/__snapshots__/fetch/dates-transform-no-http-response/model/orderDetails.ts
+  s_1d746456a08b49::t_3a2e9185016e95 1-16
+tests/__snapshots__/fetch/dates-transform/model/reminderUpdate.ts
+  s_1d746456a08b49::t_45d1e1b36be92a 1-10
+tests/__snapshots__/react-query/dates-transform-fetch/model/appointmentWithDuplicateDate.ts
+  s_1d746456a08b49::t_ce221e627f7733 1-12
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.4",
+  "base_commit_sha": "f37fe4a52557e57f7c4b7d16180b94f21aadd374",
+  "prompts": {},
+  "sessions": {
+    "s_1d746456a08b49": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "b65b8aaf-c40d-492e-b8a5-31ea9fbb2975",
+        "model": "claude-opus-5"
+      },
+      "human_author": null
+    }
+  }
+}
