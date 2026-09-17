@@ -1,0 +1,32 @@
+packages/core/src/generators/date-transform.test.ts
+  s_1d746456a08b49::t_50222cab4e3441 1963
+  s_1d746456a08b49::t_684c9442e3b5bc 241-246
+  s_1d746456a08b49::t_889ec7f7482291 2065-2071,2090-2094,2111-2114
+  s_1d746456a08b49::t_87020e8535e80d 1935,1939-1944,1959-1962
+  s_1d746456a08b49::t_667d515d412497 2168-2362
+tests/__snapshots__/react-query/dates-transform/endpoints.ts
+  s_1d746456a08b49::t_b3bb2ab166a04e 71-77,388-391,849-853,1089-1093
+tests/dates-transform-request.spec.ts
+  s_1d746456a08b49::t_8ff093f980c686 22
+  s_1d746456a08b49::t_ca96443aefe66c 122-136,138
+  s_1d746456a08b49::t_aad179e77639e2 137
+packages/core/src/generators/date-transform.ts
+  s_1d746456a08b49::t_cf24582c861c58 295-306
+  s_1d746456a08b49::t_ca10cb63300326 522
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.4",
+  "base_commit_sha": "5ed13111b16d8b048198f82c65aecd1b9a995c0f",
+  "prompts": {},
+  "sessions": {
+    "s_1d746456a08b49": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "b65b8aaf-c40d-492e-b8a5-31ea9fbb2975",
+        "model": "claude-opus-5"
+      },
+      "human_author": "Samu <samuel.requena@archlet.ch>"
+    }
+  }
+}
