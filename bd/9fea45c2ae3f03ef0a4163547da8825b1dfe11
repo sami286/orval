@@ -1,0 +1,100 @@
+tests/__snapshots__/fetch/dates-transform-no-http-response/endpoints.ts
+  s_1d746456a08b49::t_e66080c7e19605 41,43,93,95,139,141,189,191,213-249,323,325,427,429,512,514,600,602
+  s_1d746456a08b49::t_03d5ccf40dc067 13
+tests/__snapshots__/react-query/dates-transform-fetch/endpoints.ts
+  s_1d746456a08b49::t_8101691b46f8d0 78,80,286,288,467,469,652,654,829-1029,1245,1247,1426,1430,1599,1603,1774,1776
+  s_1d746456a08b49::t_ace8bfb1b2179b 29
+tests/__snapshots__/runtime-validation/fetch-dates-transform/endpoints.ts
+  s_1d746456a08b49::t_47a3dc93f5ed2f 53,59,119,121,173,179,237,239,265-320,405,411-413,528,534,630,636-638,736,742-744
+  s_1d746456a08b49::t_8c2143069b4f45 11,21
+tests/__snapshots__/react-query/dates-transform/endpoints.ts
+  s_1d746456a08b49::t_1362483bbf6bd3 698-863
+  s_1d746456a08b49::t_7e20ccfd7b98ea 29
+docs/content/docs/reference/configuration/output.mdx
+  s_1d746456a08b49::t_a3e190d17f7501 4049-4061,4066-4069
+  s_1d746456a08b49::t_6d946b9d4d1ae4 2776-2780
+  s_1d746456a08b49::t_b243ea0f45d795 3970-3997
+packages/fetch/src/index.ts
+  s_1d746456a08b49::t_784c7f27ad874b 936,938
+  s_1d746456a08b49::t_cc584ec7826e4c 931
+  s_1d746456a08b49::t_b0c7df5378d679 511-521,529,533-536
+  s_1d746456a08b49::t_1b42ea9844d4ff 537
+  s_1d746456a08b49::t_ddfe7d60c7a305 965
+packages/fetch/src/index.test.ts
+  s_1d746456a08b49::t_6093a92cadffe1 1196,1200-1223
+  s_1d746456a08b49::t_bdf0ce5c72c216 1309-1311
+  s_1d746456a08b49::t_99807742cb3818 1225
+  s_1d746456a08b49::t_84666d5bcdde7d 1247
+  s_1d746456a08b49::t_383ca572ebf4f2 1333
+  s_1d746456a08b49::t_3d703f421496a2 1224,1315
+tests/__snapshots__/fetch/dates-transform-hook-mutator/endpoints.ts
+  s_1d746456a08b49::t_57b985707af99d 49,108,161,218,242-289,372-374,488,584-586,684-686
+  s_1d746456a08b49::t_5458b599faaec8 13
+tests/__snapshots__/swr/dates-transform/endpoints.ts
+  s_1d746456a08b49::t_3371f0fdb8eda1 50,52,147,149,238,240,333,335,401-488,604,606,751,755,887,891,1032,1034
+  s_1d746456a08b49::t_0b955b62144fed 19
+tests/__snapshots__/fetch/dates-transform-mutator/endpoints.ts
+  s_1d746456a08b49::t_522608b6c1ae9a 43,95,141,194,217-260,333,442,532-534,626-628
+  s_1d746456a08b49::t_56d14051d31446 13
+tests/__snapshots__/fetch/dates-transform/endpoints.ts
+  s_1d746456a08b49::t_7ef14655688647 44,46,103,105,156,158,213,215,241-288,372,374,485,489,581,585,679,681
+  s_1d746456a08b49::t_8bcd8752f369a7 13
+tests/dates-transform-fetch.spec.ts
+  s_1d746456a08b49::t_e0ed0e427bf141 89-105
+  s_1d746456a08b49::t_88160a790c53b4 4
+packages/core/src/utils/http-status.ts
+  s_1d746456a08b49::t_3e45d50c85491d 100-106
+  s_1d746456a08b49::t_97de77e0dc60ae 107-108
+tests/specifications/dates-transform.yaml
+  s_1d746456a08b49::t_481a1534d2e7b4 80-97
+  s_1d746456a08b49::t_b0f82dd8f184ee 98-99
+  s_1d746456a08b49::t_74f44a6029ff09 211-216
+tests/__snapshots__/fetch/dates-transform-hook-mutator/model/index.ts
+  s_1d746456a08b49::t_186a95bbdb5068 24
+tests/__snapshots__/fetch/dates-transform-hook-mutator/model/lastInspection.ts
+  s_1d746456a08b49::t_b33597f3bc4308 1-8
+tests/__snapshots__/fetch/dates-transform-mutator/model/index.ts
+  s_1d746456a08b49::t_b5cc339a1f1e13 24
+tests/__snapshots__/fetch/dates-transform-mutator/model/lastInspection.ts
+  s_1d746456a08b49::t_e81976abf4f5f2 1-8
+tests/__snapshots__/fetch/dates-transform-no-http-response/model/index.ts
+  s_1d746456a08b49::t_43aa858425ece7 24
+tests/__snapshots__/fetch/dates-transform-no-http-response/model/lastInspection.ts
+  s_1d746456a08b49::t_c9e7cb27c46f2d 1-8
+tests/__snapshots__/fetch/dates-transform/model/index.ts
+  s_1d746456a08b49::t_25ef158bdbf7c3 24
+tests/__snapshots__/fetch/dates-transform/model/lastInspection.ts
+  s_1d746456a08b49::t_87dd74fe619f9b 1-8
+tests/__snapshots__/react-query/dates-transform-fetch/model/index.ts
+  s_1d746456a08b49::t_51d90db5ff05a5 24
+tests/__snapshots__/react-query/dates-transform-fetch/model/lastInspection.ts
+  s_1d746456a08b49::t_99f9e6112a12e1 1-8
+tests/__snapshots__/react-query/dates-transform/model/index.ts
+  s_1d746456a08b49::t_bf9b1df97cb788 24
+tests/__snapshots__/react-query/dates-transform/model/lastInspection.ts
+  s_1d746456a08b49::t_e57754a8ae39b5 1-8
+tests/__snapshots__/runtime-validation/fetch-dates-transform/model/index.ts
+  s_1d746456a08b49::t_7e694e62cdf9f1 19
+tests/__snapshots__/runtime-validation/fetch-dates-transform/model/lastInspection.zod.ts
+  s_1d746456a08b49::t_78bc47ac88142b 1-12
+tests/__snapshots__/swr/dates-transform/model/index.ts
+  s_1d746456a08b49::t_bea0a2ab06a47c 24
+tests/__snapshots__/swr/dates-transform/model/lastInspection.ts
+  s_1d746456a08b49::t_4847b319237d90 1-8
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.4",
+  "base_commit_sha": "bd9fea45c2ae3f03ef0a4163547da8825b1dfe11",
+  "prompts": {},
+  "sessions": {
+    "s_1d746456a08b49": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "b65b8aaf-c40d-492e-b8a5-31ea9fbb2975",
+        "model": "claude-opus-5"
+      },
+      "human_author": null
+    }
+  }
+}
